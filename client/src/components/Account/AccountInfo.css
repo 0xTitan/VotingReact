@@ -1,0 +1,10 @@
+.class-accountInfo {
+  display: flex;
+  justify-content: flex-end
+}
+
+.class-itemAccountInfo {
+  background: crimson;
+  margin: 5px;
+  padding: 5px;
+}

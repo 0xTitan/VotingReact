@@ -14,9 +14,9 @@
 }
 
 #App .container {
-  width: 40%;
+  width: 80%;
   min-width: 60rem;
-  max-width: 75rem;
+  max-width: 85rem;
   height: 100%;
 }
 
