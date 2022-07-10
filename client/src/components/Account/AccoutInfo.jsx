@@ -19,7 +19,7 @@ function AccountInfo() {
     const valueWei = web3 ? await web3.eth.getBalance(accounts[0]) : 0;
     let valueEth = web3 ? web3.utils.fromWei(valueWei, "ether") : 0;
     valueEth = Number(valueEth).toFixed(3);
-    setBalance( valueEth + " ETH");
+    setBalance(valueEth + " ETH");
   };
 
   const getCurrentAddress = async () => {
@@ -53,9 +53,11 @@ function AccountInfo() {
   };
 
   useEffect(() => {
-    getCurrentAddress();
-    getBalance();
-    getNetwork();
+    if (web3) {
+      getCurrentAddress();
+      getBalance();
+      getNetwork();
+    }
   }, [web3, accounts]);
 
   return (

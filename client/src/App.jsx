@@ -3,6 +3,7 @@ import Intro from "./components/Intro/";
 import Setup from "./components/Setup";
 import Demo from "./components/Demo";
 import Account from "./components/Account/AccoutInfo";
+import Worflow from "./components/Worflow/Workflow";
 import "./App.css";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
         <div className="container">
           <Account />
           <hr />
-          {/* <Setup /> */}
+          <Worflow />
           <hr />
           {/* <Demo /> */}
           <hr />
