@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { EthProvider } from "./contexts/EthContext";
 import Intro from "./components/Intro/";
 import Setup from "./components/Setup";
@@ -7,13 +8,20 @@ import Worflow from "./components/Worflow/Workflow";
 import "./App.css";
 
 function App() {
+  const [isOwner, setOwner] = useState(false);
+
+  function handleOwnerCheck(value) {
+    console.log(value);
+    setOwner(value);
+  }
+
   return (
     <EthProvider>
       <div id="App">
         <div className="container">
-          <Account />
+          <Account handleOwnerCheck={handleOwnerCheck} />
           <hr />
-          <Worflow />
+          {isOwner && <Worflow />}
           <hr />
           {/* <Demo /> */}
           <hr />

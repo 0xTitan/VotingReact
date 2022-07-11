@@ -82,6 +82,44 @@ function Worflow() {
     );
   };
 
+  const endVotingSession = async (e) => {
+    const transact = await contract.methods
+      .endVotingSession()
+      .send({ from: accounts[0] });
+    const value = await contract.methods
+      .workflowStatus()
+      .call({ from: accounts[0] });
+    setWorkflowStatus(value);
+    //get event from transaction.0
+    console.log(
+      "Previous status  :" +
+        transact.events.WorkflowStatusChange.returnValues.previousStatus
+    );
+    console.log(
+      "Current status  :" +
+        transact.events.WorkflowStatusChange.returnValues.newStatus
+    );
+  };
+
+  const tallyVotes = async (e) => {
+    const transact = await contract.methods
+      .tallyVotes()
+      .send({ from: accounts[0] });
+    const value = await contract.methods
+      .workflowStatus()
+      .call({ from: accounts[0] });
+    setWorkflowStatus(value);
+    //get event from transaction.0
+    console.log(
+      "Previous status  :" +
+        transact.events.WorkflowStatusChange.returnValues.previousStatus
+    );
+    console.log(
+      "Current status  :" +
+        transact.events.WorkflowStatusChange.returnValues.newStatus
+    );
+  };
+
   return (
     <div className="btns">
       <button disabled={!checkStatus(1)} onClick={startProposalsRegistering}>
@@ -92,6 +130,12 @@ function Worflow() {
       </button>
       <button disabled={!checkStatus(3)} onClick={startVotingSession}>
         Start voting session
+      </button>
+      <button disabled={!checkStatus(4)} onClick={endVotingSession}>
+        End voting session
+      </button>
+      <button disabled={!checkStatus(5)} onClick={tallyVotes}>
+        Tally vote
       </button>
 
       <button onClick={read}>read()</button>

@@ -8,8 +8,6 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 /// @notice : ipfs link to devdoc : https://ipfs.io/ipfs/QmZh9j6Ee3ya4pk6HbfcnVKJXkkGB1t1nHJvgys1n6vhek
 /// @title Voting contract
 contract Voting is Ownable {
-    uint256 public winningProposalID;
-
     struct Voter {
         bool isRegistered;
         bool hasVoted;
@@ -30,6 +28,7 @@ contract Voting is Ownable {
         VotesTallied
     }
 
+    uint256 public winningProposalID;
     WorkflowStatus public workflowStatus;
     Proposal[] proposalsArray;
     mapping(address => Voter) voters;

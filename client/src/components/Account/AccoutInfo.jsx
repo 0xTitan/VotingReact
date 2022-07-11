@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import useEth from "../../contexts/EthContext/useEth";
 import "./AccountInfo.css";
 
-function AccountInfo() {
+function AccountInfo({ handleOwnerCheck }) {
   const {
     state: { accounts, networkID, web3, contract },
   } = useEth();
@@ -52,11 +52,24 @@ function AccountInfo() {
     }
   };
 
+  const isOwner = async () => {
+    const value = contract
+      ? await contract.methods.owner().call({ from: accounts[0] })
+      : -1;
+    console.log(value);
+    if (value == accounts[0]) {
+      handleOwnerCheck(true);
+    } else {
+      handleOwnerCheck(false);
+    }
+  };
+
   useEffect(() => {
     if (web3) {
       getCurrentAddress();
       getBalance();
       getNetwork();
+      isOwner();
     }
   }, [web3, accounts]);
 
