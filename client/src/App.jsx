@@ -5,6 +5,7 @@ import Setup from "./components/Setup";
 import Demo from "./components/Demo";
 import Account from "./components/Account/AccoutInfo";
 import Worflow from "./components/Worflow/Workflow";
+import VoterRegistration from "./components/VoterRegistration/VoterRegistration";
 import "./App.css";
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
           <hr />
           {isOwner && <Worflow />}
           <hr />
-          {/* <Demo /> */}
+          <VoterRegistration />
           <hr />
           {/* <Footer /> */}
         </div>

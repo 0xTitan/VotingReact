@@ -1,0 +1,14 @@
+.voterRegistration-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.voterRegistration-operation {
+  display: flex;
+  flex-direction: row;
+}
+
+.voterRegistration-add {
+  display: flex;
+  flex-direction: column;
+}

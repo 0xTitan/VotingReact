@@ -137,7 +137,6 @@ function Worflow() {
       <button disabled={!checkStatus(5)} onClick={tallyVotes}>
         Tally vote
       </button>
-
       <button onClick={read}>read()</button>
       <p>{workflowStatus}</p>
     </div>
