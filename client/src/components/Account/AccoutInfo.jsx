@@ -2,7 +2,12 @@ import { useState, useEffect } from "react";
 import useEth from "../../contexts/EthContext/useEth";
 import "./AccountInfo.css";
 
-function AccountInfo({ handleOwnerCheck, handleVoterRegisteredCheck }) {
+function AccountInfo({
+  handleOwnerCheck,
+  handleVoterRegisteredCheck,
+  handleHasVotedCheck,
+  handleProposalIfVotedFor,
+}) {
   const {
     state: { accounts, networkID, web3, contract },
   } = useEth();
@@ -57,7 +62,7 @@ function AccountInfo({ handleOwnerCheck, handleVoterRegisteredCheck }) {
       ? await contract.methods.owner().call({ from: accounts[0] })
       : -1;
     console.log(value);
-    if (value == accounts[0]) {
+    if (value === accounts[0]) {
       handleOwnerCheck(true);
     } else {
       handleOwnerCheck(false);
@@ -65,16 +70,35 @@ function AccountInfo({ handleOwnerCheck, handleVoterRegisteredCheck }) {
   };
 
   const isRegistered = async () => {
-    const value = contract
-      ? await contract.methods.getVoter(accounts[0]).call({ from: accounts[0] })
-      : null;
-    console.log(value);
-    if (value.isRegistered) {
-      handleVoterRegisteredCheck(true);
-    } else {
+    try {
+      const value = contract
+        ? await contract.methods
+            .getVoter(accounts[0])
+            .call({ from: accounts[0] })
+        : null;
+      console.log(value);
+      if (value.isRegistered) {
+        handleVoterRegisteredCheck(true);
+      } else {
+        handleVoterRegisteredCheck(false);
+      }
+      if (value.hasVoted) {
+        handleHasVotedCheck(true);
+      } else {
+        handleHasVotedCheck(false);
+      }
+      if (value.votedProposalId >= 0 && value.hasVoted) {
+        handleProposalIfVotedFor(value.votedProposalId);
+      } else {
+        handleProposalIfVotedFor(-1);
+      }
+    } catch (err) {
       handleVoterRegisteredCheck(false);
+      handleHasVotedCheck(false);
+      handleProposalIfVotedFor(-1);
     }
   };
+
 
   useEffect(() => {
     if (web3) {
@@ -84,7 +108,7 @@ function AccountInfo({ handleOwnerCheck, handleVoterRegisteredCheck }) {
       isOwner();
       isRegistered();
     }
-  }, [web3, accounts]);
+  }, [web3]);
 
   return (
     <div className="class-accountInfo">

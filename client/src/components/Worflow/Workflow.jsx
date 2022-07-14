@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import useEth from "../../contexts/EthContext/useEth";
 
 function Worflow({ handleWorkflowStatusCheck }) {
@@ -8,18 +8,19 @@ function Worflow({ handleWorkflowStatusCheck }) {
   const [workflowStatus, setWorkflowStatus] = useState(0);
 
   useEffect(() => {
+    console.log("render workflow");
     if (accounts) {
       read();
     }
   }, [accounts]);
 
-  const read = async () => {
+  const read = useCallback(async () => {
     const value = await contract.methods
       .workflowStatus()
       .call({ from: accounts[0] });
     setWorkflowStatus(value);
     handleWorkflowStatusCheck(value);
-  };
+  }, [contract]);
 
   const checkStatus = (status) => {
     return status > workflowStatus;
@@ -33,6 +34,7 @@ function Worflow({ handleWorkflowStatusCheck }) {
       .workflowStatus()
       .call({ from: accounts[0] });
     setWorkflowStatus(value);
+    handleWorkflowStatusCheck(value);
     //get event from transaction.0
     console.log(
       "Previous status  :" +
@@ -52,6 +54,7 @@ function Worflow({ handleWorkflowStatusCheck }) {
       .workflowStatus()
       .call({ from: accounts[0] });
     setWorkflowStatus(value);
+    handleWorkflowStatusCheck(value);
     //get event from transaction.0
     console.log(
       "Previous status  :" +
@@ -71,6 +74,7 @@ function Worflow({ handleWorkflowStatusCheck }) {
       .workflowStatus()
       .call({ from: accounts[0] });
     setWorkflowStatus(value);
+    handleWorkflowStatusCheck(value);
     //get event from transaction.0
     console.log(
       "Previous status  :" +
@@ -90,6 +94,7 @@ function Worflow({ handleWorkflowStatusCheck }) {
       .workflowStatus()
       .call({ from: accounts[0] });
     setWorkflowStatus(value);
+    handleWorkflowStatusCheck(value);
     //get event from transaction.0
     console.log(
       "Previous status  :" +
@@ -109,6 +114,7 @@ function Worflow({ handleWorkflowStatusCheck }) {
       .workflowStatus()
       .call({ from: accounts[0] });
     setWorkflowStatus(value);
+    handleWorkflowStatusCheck(value);
     //get event from transaction.0
     console.log(
       "Previous status  :" +

@@ -1,31 +1,42 @@
 import { useState } from "react";
 import { EthProvider } from "./contexts/EthContext";
-import Intro from "./components/Intro/";
-import Setup from "./components/Setup";
-import Demo from "./components/Demo";
+// import Intro from "./components/Intro/";
+// import Setup from "./components/Setup";
+// import Demo from "./components/Demo";
 import Account from "./components/Account/AccoutInfo";
 import Worflow from "./components/Worflow/Workflow";
 import VoterRegistration from "./components/VoterRegistration/VoterRegistration";
 import ProposalRegistration from "./components/ProposalRegistration/ProposalRegistration";
+import ProposalList from "./components/ProposalList/ProposalList";
+import VoteResult from "./components/VoteResult/VoteResult";
 import "./App.css";
 
 function App() {
   const [isOwner, setOwner] = useState(false);
   const [isRegister, setRegistered] = useState(false);
+  const [hasVoted, setHasVoted] = useState(false);
+  const [proposalIdVotedFor, setProposalIfVotedFor] = useState(-1);
   const [currentWorflow, setCurrentWorflow] = useState(0);
 
-  function handleOwnerCheck(value) {
-    setOwner(value);
+  function handleOwnerCheck(owner) {
+    setOwner(owner);
   }
 
-  function handleVoterRegisteredCheck(value) {
-    console.log("isRegister : " + value);
-    setRegistered(value);
+  function handleVoterRegisteredCheck(registered) {
+    setRegistered(registered);
   }
 
-  function handleWorkflowStatusCheck(value) {
-    console.log("currentWorflow : " + value);
-    setCurrentWorflow(value);
+  function handleHasVotedCheck(voted) {
+    setHasVoted(voted);
+  }
+
+  function handleProposalIfVotedFor(propIdVotedFor) {
+    console.log("proposalIdVotedFor : " + propIdVotedFor);
+    setProposalIfVotedFor(propIdVotedFor);
+  }
+
+  function handleWorkflowStatusCheck(status) {
+    setCurrentWorflow(status);
   }
 
   return (
@@ -35,6 +46,8 @@ function App() {
           <Account
             handleOwnerCheck={handleOwnerCheck}
             handleVoterRegisteredCheck={handleVoterRegisteredCheck}
+            handleHasVotedCheck={handleHasVotedCheck}
+            handleProposalIfVotedFor={handleProposalIfVotedFor}
           />
           <hr />
           {isOwner && (
@@ -44,6 +57,16 @@ function App() {
           {isOwner && currentWorflow == 0 && <VoterRegistration />}
           <hr />
           {isRegister && currentWorflow == 1 && <ProposalRegistration />}
+          <hr />
+          {isRegister && currentWorflow == 3 && (
+            <ProposalList
+              hasVoted={hasVoted}
+              handleHasVotedCheck={handleHasVotedCheck}
+              proposalIdVotedFor={proposalIdVotedFor}
+            />
+          )}
+          <hr/>
+          {currentWorflow == 5 && <VoteResult />}
         </div>
       </div>
     </EthProvider>

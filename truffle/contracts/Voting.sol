@@ -28,7 +28,7 @@ contract Voting is Ownable {
         VotesTallied
     }
 
-    uint256 public winningProposalID;
+    uint256 public winningProposalId;
     WorkflowStatus public workflowStatus;
     Proposal[] proposalsArray;
     mapping(address => Voter) voters;
@@ -195,7 +195,7 @@ contract Voting is Ownable {
 
     /**@notice Tally vote. Compute winning proposal
      * @dev Update workflowStatus state variable to VotesTallied
-     * @dev Register winner proposal id in state variable winningProposalID. Emit an event WorkflowStatusChange*/
+     * @dev Register winner proposal id in state variable winningProposalId. Emit an event WorkflowStatusChange*/
     function tallyVotes() external onlyOwner {
         require(
             workflowStatus == WorkflowStatus.VotingSessionEnded,
@@ -210,7 +210,7 @@ contract Voting is Ownable {
                 _winningProposalId = p;
             }
         }
-        winningProposalID = _winningProposalId;
+        winningProposalId = _winningProposalId;
 
         workflowStatus = WorkflowStatus.VotesTallied;
         emit WorkflowStatusChange(

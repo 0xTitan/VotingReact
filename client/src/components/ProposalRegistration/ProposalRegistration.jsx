@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useEth from "../../contexts/EthContext/useEth";
 import "./ProposalRegistration.css";
 
@@ -31,13 +31,10 @@ function ProposalRegistration() {
   };
 
   const handleRegisterProposals = async (index) => {
-    console.log(proposalList);
-    console.log(proposalList[index].proposal);
     const prop = proposalList[index].proposal;
     const transact = await contract.methods
       .addProposal(prop)
       .send({ from: accounts[0] });
-    console.log(transact);
     console.log(
       "Proposal added  : " +
         transact.events.ProposalRegistered.returnValues.proposalId
@@ -55,7 +52,7 @@ function ProposalRegistration() {
         next phase
       </h3>
       {proposalList.map((currentProposal, index) => (
-        <div className="proposalRegistration-operation">
+        <div key={index} className="proposalRegistration-operation">
           <div className="proposalRegistration-add">
             <div className="proposalRegistration-input">
               <input
