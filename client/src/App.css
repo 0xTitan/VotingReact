@@ -65,7 +65,7 @@ details summary {
   cursor: pointer;
 }
 
-p,
+/* p,
 details code {
   margin-top: 1rem;
   margin-bottom: 1.4rem;
@@ -78,7 +78,7 @@ p {
 p span.code {
   font-family: monospace;
   color: var(--gray);
-}
+} */
 
 hr {
   margin: 4rem 0;

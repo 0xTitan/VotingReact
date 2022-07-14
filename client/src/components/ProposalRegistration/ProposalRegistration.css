@@ -1,22 +1,22 @@
-.voterRegistration-main {
+.proposalRegistration-main {
   display: flex;
   flex-direction: column;
   margin: auto;
 }
 
-.voterRegistration-operation {
+.proposalRegistration-operation {
   display: flex;
   flex-direction: row;
   margin: auto;
 }
 
-.voterRegistration-add {
+.proposalRegistration-add {
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
 }
 
-.voterRegistration-input {
+.proposalRegistration-input {
   display: flex;
   flex-direction: row;
   margin-bottom: 5px;
@@ -26,15 +26,15 @@
   justify-content: space-evenly;
 }
 
-.voterRegistration-alert {
+.proposalRegistration-alert {
   flex-shrink: 0;
 }
 
-.voterRegistration-inputTxt {
+.proposalRegistration-inputTxt {
   flex-shrink: 0;
   min-width: 250px;
 }
 
-.removeVoter-btn {
+.removeproposal-btn {
   flex-shrink: 0;
 }

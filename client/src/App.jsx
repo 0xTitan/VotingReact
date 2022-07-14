@@ -6,27 +6,44 @@ import Demo from "./components/Demo";
 import Account from "./components/Account/AccoutInfo";
 import Worflow from "./components/Worflow/Workflow";
 import VoterRegistration from "./components/VoterRegistration/VoterRegistration";
+import ProposalRegistration from "./components/ProposalRegistration/ProposalRegistration";
 import "./App.css";
 
 function App() {
   const [isOwner, setOwner] = useState(false);
+  const [isRegister, setRegistered] = useState(false);
+  const [currentWorflow, setCurrentWorflow] = useState(0);
 
   function handleOwnerCheck(value) {
-    console.log(value);
     setOwner(value);
+  }
+
+  function handleVoterRegisteredCheck(value) {
+    console.log("isRegister : " + value);
+    setRegistered(value);
+  }
+
+  function handleWorkflowStatusCheck(value) {
+    console.log("currentWorflow : " + value);
+    setCurrentWorflow(value);
   }
 
   return (
     <EthProvider>
       <div id="App">
         <div className="container">
-          <Account handleOwnerCheck={handleOwnerCheck} />
+          <Account
+            handleOwnerCheck={handleOwnerCheck}
+            handleVoterRegisteredCheck={handleVoterRegisteredCheck}
+          />
           <hr />
-          {isOwner && <Worflow />}
+          {isOwner && (
+            <Worflow handleWorkflowStatusCheck={handleWorkflowStatusCheck} />
+          )}
           <hr />
-          <VoterRegistration />
+          {isOwner && currentWorflow == 0 && <VoterRegistration />}
           <hr />
-          {/* <Footer /> */}
+          {isRegister && currentWorflow == 1 && <ProposalRegistration />}
         </div>
       </div>
     </EthProvider>

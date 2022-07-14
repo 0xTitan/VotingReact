@@ -7,11 +7,11 @@ function VoterRegistration() {
     state: { contract, accounts },
   } = useEth();
   const [voterAddressList, setVoterAddressList] = useState([
-    { voterAddress: "" },
+    { voterAddress: "", valid: 0 },
   ]);
 
   const handleAddVoter = () => {
-    setVoterAddressList([...voterAddressList, { voterAddress: "" }]);
+    setVoterAddressList([...voterAddressList, { voterAddress: "", valid: 0 }]);
   };
 
   const handleRemoveVoter = (index) => {
@@ -27,12 +27,29 @@ function VoterRegistration() {
     const { name, value } = e.target;
     const listVoter = [...voterAddressList];
     listVoter[index][name] = value;
+    console.log("adress length" + value.length);
+    if (value.length === 42) {
+      listVoter[index]["valid"] = 1;
+      console.log("address valid");
+    } else {
+      listVoter[index]["valid"] = 0;
+    }
     setVoterAddressList(listVoter);
   };
 
+  const handleRegisterVoters = async () => {
+    console.log(voterAddressList[0].voterAddress);
+    const transact = await contract.methods
+      .addVoter(voterAddressList[0].voterAddress)
+      .send({ from: accounts[0] });
+    console.log(transact);
+    console.log(
+      "Voter added  :" +
+        transact.events.VoterRegistered.returnValues.voterAddress
+    );
+  };
 
   return (
-    <form>
       <div className="voterRegistration-main">
         <h3 htmlFor="adminSentence">
           Admin please proceed with voter address registration before moving to
@@ -41,13 +58,30 @@ function VoterRegistration() {
         {voterAddressList.map((currentVoter, index) => (
           <div className="voterRegistration-operation">
             <div className="voterRegistration-add">
-              <input
-                name="voterAddress"
-                type="text"
-                id="voterAddress"
-                value={currentVoter.voterAddress}
-                onChange={(e) => handleAddressChange(e, index)}
-              ></input>
+              <div className="voterRegistration-input">
+                <input
+                  className="voterRegistration-inputTxt"
+                  name="voterAddress"
+                  type="text"
+                  id="voterAddress"
+                  value={currentVoter.voterAddress}
+                  onChange={(e) => handleAddressChange(e, index)}
+                ></input>
+
+                {currentVoter.valid === 0 &&
+                  currentVoter.voterAddress.length > 0 && (
+                    <p className="voterRegistration-alert">!</p>
+                  )}
+                {voterAddressList.length > 1 && (
+                  <button
+                    type="button"
+                    className="removeVoter-btn"
+                    onClick={() => handleRemoveVoter(index)}
+                  >
+                    <span>Remove voter</span>
+                  </button>
+                )}
+              </div>
               {voterAddressList.length - 1 === index &&
                 voterAddressList.length < 100 && (
                   <button
@@ -59,21 +93,18 @@ function VoterRegistration() {
                   </button>
                 )}
             </div>
-            <div>
-              {voterAddressList.length > 1 && (
-                <button
-                  type="button"
-                  className="removeVoter-btn"
-                  onClick={() =>handleRemoveVoter(index)}
-                >
-                  <span>Remove voter</span>
-                </button>
-              )}
-            </div>
           </div>
         ))}
+        {voterAddressList.length > 1 && (
+          <button
+            type="button"
+            className="registerVoter-btn"
+            onClick={handleRegisterVoters}
+          >
+            <span>Register</span>
+          </button>
+        )}
       </div>
-    </form>
   );
 }
 

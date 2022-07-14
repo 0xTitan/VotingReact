@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import useEth from "../../contexts/EthContext/useEth";
 
-function Worflow() {
+function Worflow({ handleWorkflowStatusCheck }) {
   const {
     state: { contract, accounts },
   } = useEth();
   const [workflowStatus, setWorkflowStatus] = useState(0);
 
   useEffect(() => {
-    setWorkflowStatus(999);
     if (accounts) {
       read();
     }
@@ -19,6 +18,7 @@ function Worflow() {
       .workflowStatus()
       .call({ from: accounts[0] });
     setWorkflowStatus(value);
+    handleWorkflowStatusCheck(value);
   };
 
   const checkStatus = (status) => {

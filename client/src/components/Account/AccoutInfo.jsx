@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import useEth from "../../contexts/EthContext/useEth";
 import "./AccountInfo.css";
 
-function AccountInfo({ handleOwnerCheck }) {
+function AccountInfo({ handleOwnerCheck, handleVoterRegisteredCheck }) {
   const {
     state: { accounts, networkID, web3, contract },
   } = useEth();
@@ -64,12 +64,25 @@ function AccountInfo({ handleOwnerCheck }) {
     }
   };
 
+  const isRegistered = async () => {
+    const value = contract
+      ? await contract.methods.getVoter(accounts[0]).call({ from: accounts[0] })
+      : null;
+    console.log(value);
+    if (value.isRegistered) {
+      handleVoterRegisteredCheck(true);
+    } else {
+      handleVoterRegisteredCheck(false);
+    }
+  };
+
   useEffect(() => {
     if (web3) {
       getCurrentAddress();
       getBalance();
       getNetwork();
       isOwner();
+      isRegistered();
     }
   }, [web3, accounts]);
 
