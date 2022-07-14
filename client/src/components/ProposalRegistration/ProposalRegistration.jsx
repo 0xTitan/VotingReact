@@ -76,7 +76,7 @@ function ProposalRegistration() {
                   disabled={currentProposal.registered}
                   onClick={() => handleRegisterProposals(index)}
                 >
-                  <span>Register</span>
+                  <span>Register proposal</span>
                 </button>
               )}
             </div>

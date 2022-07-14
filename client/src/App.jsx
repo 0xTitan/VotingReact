@@ -9,6 +9,7 @@ import VoterRegistration from "./components/VoterRegistration/VoterRegistration"
 import ProposalRegistration from "./components/ProposalRegistration/ProposalRegistration";
 import ProposalList from "./components/ProposalList/ProposalList";
 import VoteResult from "./components/VoteResult/VoteResult";
+import VoterInfo from "./components/VoterInfo/VoterInfo";
 import "./App.css";
 
 function App() {
@@ -65,8 +66,10 @@ function App() {
               proposalIdVotedFor={proposalIdVotedFor}
             />
           )}
-          <hr/>
+          <hr />
           {currentWorflow == 5 && <VoteResult />}
+          <hr />
+          {currentWorflow == 5 && isRegister && <VoterInfo />}
         </div>
       </div>
     </EthProvider>

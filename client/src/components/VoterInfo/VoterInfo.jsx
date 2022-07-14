@@ -2,29 +2,50 @@ import { useState } from "react";
 import useEth from "../../contexts/EthContext/useEth";
 
 function VoterInfo() {
+  const {
+    state: { accounts, contract },
+  } = useEth();
+
   const [voter, setVoter] = useState();
-  const [address, setAddress] = useState([voterAddress: "", valid: 0 ]);
+  const [address, setAddress] = useState("");
+  const [addressValid, setAddressValid] = useState(false);
+  const [proposal, setProposal] = useState(false);
+  const [answer, SetAnswer] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (value.length === 42) {
-      setValidAddress(true);
+      setAddressValid(true);
+      setAddress(value);
     }
   };
 
-  const checkVoterInfo = async (index) => {
-    const prop = proposalList[index].proposal;
-    const transact = await contract.methods
-      .addProposal(prop)
-      .send({ from: accounts[0] });
-    console.log(
-      "Proposal added  : " +
-        transact.events.ProposalRegistered.returnValues.proposalId
-    );
+  const checkVoterInfo = async () => {
+    try {
+      const voterInfo = await contract.methods
+        .getVoter(address)
+        .call({ from: accounts[0] });
+      if (voterInfo) {
+        setVoter(voterInfo);
 
-    const listProposal = [...proposalList];
-    listProposal[index]["registered"] = 1;
-    setProposalList(listProposal);
+        if (voterInfo.hasVoted && voterInfo.votedProposalId >= 0) {
+          const proposal = await contract.methods
+            .getOneProposal(voterInfo.votedProposalId)
+            .call({ from: accounts[0] });
+          setProposal(proposal);
+          SetAnswer(
+            "Voter with address " +
+              address +
+              "has voted for " +
+              proposal.description
+          );
+        } else {
+          SetAnswer("Voter with address " + address + " didn't vote");
+        }
+      }
+    } catch (err) {
+      SetAnswer("No data for address " + address);
+    }
   };
 
   return (
@@ -34,9 +55,12 @@ function VoterInfo() {
         name="voterAddress"
         type="text"
         id="voterAddress"
-        onChange={(e) => handleAddressChange(e)}
+        onChange={(e) => handleChange(e)}
       ></input>
-      <button onClick={checkVoterInfo}>Get voter result</button>
+      <button disabled={!addressValid} onClick={checkVoterInfo}>
+        Get voter result
+      </button>
+      <p>{answer}</p>
     </div>
   );
 }
