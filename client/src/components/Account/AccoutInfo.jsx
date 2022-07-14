@@ -7,6 +7,7 @@ function AccountInfo({
   handleVoterRegisteredCheck,
   handleHasVotedCheck,
   handleProposalIfVotedFor,
+  handleWorkflowStatusCheck,
 }) {
   const {
     state: { accounts, networkID, web3, contract },
@@ -15,6 +16,7 @@ function AccountInfo({
   const [balance, setBalance] = useState(0);
   const [address, setAddress] = useState("");
   const [network, setNetwork] = useState("");
+  const [workflowStatus, setWorkflowStatus] = useState(0);
 
   const getBalance = async () => {
     // const value = contract
@@ -61,11 +63,22 @@ function AccountInfo({
     const value = contract
       ? await contract.methods.owner().call({ from: accounts[0] })
       : -1;
-    console.log(value);
     if (value === accounts[0]) {
       handleOwnerCheck(true);
     } else {
       handleOwnerCheck(false);
+    }
+  };
+
+  const getCurrentWorkflowAndVoterRegistered = async () => {
+    const value = await contract.methods
+      .workflowStatus()
+      .call({ from: accounts[0] });
+    console.log("status : " + value);
+    setWorkflowStatus(value);
+    handleWorkflowStatusCheck(value);
+    if (value > 0) {
+      isRegistered();
     }
   };
 
@@ -93,12 +106,12 @@ function AccountInfo({
         handleProposalIfVotedFor(-1);
       }
     } catch (err) {
+      console.log(err);
       handleVoterRegisteredCheck(false);
       handleHasVotedCheck(false);
       handleProposalIfVotedFor(-1);
     }
   };
-
 
   useEffect(() => {
     if (web3) {
@@ -106,7 +119,7 @@ function AccountInfo({
       getBalance();
       getNetwork();
       isOwner();
-      isRegistered();
+      getCurrentWorkflowAndVoterRegistered();
     }
   }, [web3]);
 

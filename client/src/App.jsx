@@ -24,6 +24,7 @@ function App() {
   }
 
   function handleVoterRegisteredCheck(registered) {
+    console.log("registered : " + registered);
     setRegistered(registered);
   }
 
@@ -37,6 +38,7 @@ function App() {
   }
 
   function handleWorkflowStatusCheck(status) {
+    console.log("setCurrentWorflow to : " + status);
     setCurrentWorflow(status);
   }
 
@@ -49,6 +51,7 @@ function App() {
             handleVoterRegisteredCheck={handleVoterRegisteredCheck}
             handleHasVotedCheck={handleHasVotedCheck}
             handleProposalIfVotedFor={handleProposalIfVotedFor}
+            handleWorkflowStatusCheck={handleWorkflowStatusCheck}
           />
           <hr />
           {isOwner && (

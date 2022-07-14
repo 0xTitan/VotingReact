@@ -28,10 +28,10 @@ function VoterRegistration() {
     setVoterAddressList(listVoter);
   };
 
-  const handleRegisterVoters = async () => {
-    console.log(voterAddressList[0].voterAddress);
+  const handleRegisterVoters = async (index) => {
+    console.log(voterAddressList[index].voterAddress);
     const transact = await contract.methods
-      .addVoter(voterAddressList[0].voterAddress)
+      .addVoter(voterAddressList[index].voterAddress)
       .send({ from: accounts[0] });
     console.log(transact);
     console.log(
@@ -67,7 +67,7 @@ function VoterRegistration() {
                 <button
                   type="button"
                   className="registerVoter-btn"
-                  onClick={handleRegisterVoters}
+                  onClick={() => handleRegisterVoters(index)}
                 >
                   <span>Register</span>
                 </button>
