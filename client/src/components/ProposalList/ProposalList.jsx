@@ -49,10 +49,10 @@ function ProposalList({
   };
 
   return (
-    <div>
+    <div className="proposalList-container">
       <span className="instruction">Please vote for the proposal you want</span>
 
-      <div className="proposalList-container">
+      <div className="proposalList-main">
         {pastEvents.map((event) => (
           <div key={event.returnValues.proposalId}>
             <ProposalItem

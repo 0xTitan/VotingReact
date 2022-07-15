@@ -3,6 +3,8 @@
   flex-direction: column;
   min-height: 300px;
   align-items: center;
+  margin: 15px;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .proposalRegistration-operation {
