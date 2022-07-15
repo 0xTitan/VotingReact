@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import useEth from "../../contexts/EthContext/useEth";
+import "./VoterInfo.css";
 
 function VoterInfo() {
   const {
@@ -54,20 +55,26 @@ function VoterInfo() {
   };
 
   return (
-    <div>
-      <input
-        className="voterInfo-inputTxt"
-        name="voterAddress"
-        type="text"
-        id="voterAddress"
-        value={address}
-        onChange={(e) => handleChange(e)}
-      ></input>
-      <button disabled={!addressValid} onClick={checkVoterInfo}>
-        Get voter result
-      </button>
+    <div className="voterInfo-container">
+      <span className="voterInfo-instruction">Check vote by address</span>
+      <div className="voterInfo-main">
+        <input
+          className="voterInfo-inputTxt"
+          name="voterAddress"
+          type="text"
+          id="voterAddress"
+          value={address}
+          onChange={(e) => handleChange(e)}
+        ></input>
+        <button
+          className="voterInfo-button"
+          disabled={!addressValid}
+          onClick={checkVoterInfo}
+        >
+          Get voter result
+        </button>
+      </div>
       <span className="instruction">{answer}</span>
-      <hr />
     </div>
   );
 }

@@ -6,10 +6,10 @@
 .class-itemAccountInfo {
   color: white;
   margin: 5px;
-  padding: 2px;
+  padding: 2px 5px 2px 5px;
   font-family: roboto, sans-serif;
   text-transform: uppercase;
-  border: 2px double #00000091;
+  border: 5px double #00000091;
   border-radius: 10px 10px 10px 10px;
   border-color: #00000075;
 }

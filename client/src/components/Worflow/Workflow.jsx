@@ -128,9 +128,9 @@ function Worflow({ handleWorkflowStatusCheck }) {
   };
 
   return (
-    <div>
+    <div className="workflow-container">
       <span className="admin-instruction">Workflow management</span>
-      <div className="workflow-container">
+      <div className="workflow-actions">
         <button
           className="worflow-button"
           disabled={!checkStatus(1)}
@@ -167,7 +167,6 @@ function Worflow({ handleWorkflowStatusCheck }) {
           Tally vote
         </button>
       </div>
-      <hr />
     </div>
   );
 }

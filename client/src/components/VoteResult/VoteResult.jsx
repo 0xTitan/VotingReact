@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import useEth from "../../contexts/EthContext/useEth";
+import "./VoteResult.css";
 
 function VoteResult() {
   const {
@@ -26,8 +27,15 @@ function VoteResult() {
   };
 
   return (
-    <div>
-      {winingProposal && <h1>Winner is proposal with id : {winingProposal}</h1>}
+    <div className="voterResult-container">
+      <span className="voterResult-instruction">Winner result</span>
+      <div className="voterResult-txt">
+        <span className="voterResult-result">
+          {winingProposal && (
+            <span>Winner is proposal with id : {winingProposal}</span>
+          )}
+        </span>
+      </div>
     </div>
   );
 }

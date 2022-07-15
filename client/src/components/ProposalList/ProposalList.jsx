@@ -46,7 +46,7 @@ function ProposalList({ hasVoted, handleHasVotedCheck, proposalIdVotedFor }) {
   return (
     <div>
       <span className="instruction">
-        Please vote for the proposal you want :
+        Please vote for the proposal you want
       </span>
 
       <div className="proposalList-container">

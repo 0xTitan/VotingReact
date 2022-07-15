@@ -1,11 +1,20 @@
 .workflow-container {
+  background-color: rgba(0, 0, 0, 0.2);
+  margin: 15px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.workflow-actions {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
-  min-height: 300px;
+  min-height: 200px;
 }
 
-
-
+.admin-instruction{
+  align-self: center;
+}

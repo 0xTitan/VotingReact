@@ -10,12 +10,6 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --primary-color: #1266cc;
-  --secondary-color: #f96400;
-  --flash-color: rgb(89, 255, 0);
-  --gray: #999;
-  --light-gray: #e0e0e0;
-  --dark-gray: #777;
   background: linear-gradient(
     to left,
     rgba(7, 27, 82, 1) 0%,
@@ -26,7 +20,7 @@
 #App .container {
   width: 80%;
   min-width: 60rem;
-  max-width: 85rem;
+  max-width: 100rem;
   height: 100%;
 }
 
@@ -35,7 +29,7 @@ button[class*="button"] {
   border-radius: 15px;
   border: none;
   font-size: 12px;
-  min-width: 100px;
+  min-width: 75px;
   max-width: 200px;
 
   text-align: center;
@@ -99,6 +93,8 @@ input[class*="inputTxt"] {
 
 span[class*="instruction"] {
   color: white;
+  margin: 5px;
+  padding-top: 10px;
 }
 
 /*code {
