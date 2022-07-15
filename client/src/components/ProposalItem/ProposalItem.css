@@ -1,3 +1,15 @@
 .proposalItem-container {
   margin: 15px;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  border-radius: 5px;
+  padding: 20px;
+  cursor: pointer;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: transform 0.25s ease-out;
+  align-content: space-around;
+  justify-content: space-around;
 }

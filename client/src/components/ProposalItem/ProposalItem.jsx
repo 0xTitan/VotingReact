@@ -60,7 +60,7 @@ function ProposalItem({
   return (
     <div key={id} className="proposalItem-container">
       <h2>{data && data.description}</h2>
-      <p>{data && data.voteCount}</p>
+      <p>Number of vote : {data && data.voteCount}</p>
       {voteId == id && <p> You voted for this prop</p>}
       {voteId != id && (
         <button
