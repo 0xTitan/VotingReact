@@ -5,12 +5,22 @@
   align-items: center;
   justify-content: center;
   font-size: 1.6rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   --primary-color: #1266cc;
   --secondary-color: #f96400;
   --flash-color: rgb(89, 255, 0);
   --gray: #999;
   --light-gray: #e0e0e0;
   --dark-gray: #777;
+  background: linear-gradient(
+    to left,
+    rgba(7, 27, 82, 1) 0%,
+    rgba(0, 128, 128, 1) 100%
+  );
 }
 
 #App .container {
@@ -20,7 +30,78 @@
   height: 100%;
 }
 
-code {
+button[class*="button"] {
+  padding: 10px 12px;
+  border-radius: 15px;
+  border: none;
+  font-size: 12px;
+  min-width: 160px;
+  max-width: 200px;
+
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 3px 2px 0 0 #3273a89f;
+  color: white;
+  background: rgba(0, 0, 0, 0.575);
+  transition: transform 0.1s ease;
+}
+
+button[class*="button"]:disabled {
+  padding: 10px 12px;
+  border-radius: 15px;
+  border: none;
+  font-size: 12px;
+  min-width: 75px;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  background: rgba(0, 0, 0, 0.205);
+  pointer-events: none;
+}
+
+button[class*="button"]::after,
+button[class*="button"]::before {
+  content: "";
+  position: absolute;
+  opacity: 0.2;
+  background-color: rgb(0, 0, 0);
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: transform 0.1s ease;
+}
+
+button[class*="button"]:hover {
+  transform: translate(-3px, -3px);
+}
+
+button[class*="button"]:hover::after {
+  transform: translate(-1.5px, -0.1.5px);
+}
+
+button[class*="button"]:hover::before {
+  transform: translate(3px, 3px);
+}
+
+input[class*="inputTxt"] {
+  font-size: 12px;
+  border: none;
+  appearance: none;
+  background: #f2f2f2b9;
+  padding: 10px;
+  outline: none;
+  width: 250px;
+  border-radius: 5px;
+}
+
+span[class*="instruction"] {
+  color: white;
+}
+
+/*code {
   display: block;
   white-space: pre-wrap;
   padding: 1.2rem 2rem;
@@ -63,7 +144,7 @@ details :not(summary, span) {
 details summary {
   padding: 1.2rem;
   cursor: pointer;
-}
+}*/
 
 /* p,
 details code {
@@ -81,5 +162,5 @@ p span.code {
 } */
 
 hr {
-  margin: 4rem 0;
+  margin: 2rem 0;
 }

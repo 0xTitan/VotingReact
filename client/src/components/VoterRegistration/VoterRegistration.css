@@ -1,40 +1,45 @@
 .voterRegistration-main {
   display: flex;
   flex-direction: column;
-  margin: auto;
+  min-height: 300px;
+  align-items: center;
 }
 
 .voterRegistration-operation {
   display: flex;
   flex-direction: row;
-  margin: auto;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .voterRegistration-add {
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
+  justify-content: center;
+  align-items: center;
 }
 
 .voterRegistration-input {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 5px;
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: 20px 1fr 1fr;
+  grid-template-areas: "a b c";
   align-items: center;
-  flex-wrap: nowrap;
-  min-width: 550;
-  justify-content: space-evenly;
-}
-
-.voterRegistration-alert {
-  flex-shrink: 0;
+  justify-items: center;
+  margin: 10px 0 10px 0;
 }
 
 .voterRegistration-inputTxt {
-  flex-shrink: 0;
-  min-width: 250px;
+  grid-area: b;
 }
 
-.removeVoter-btn {
-  flex-shrink: 0;
+.voterRegistration-alert {
+  margin: 0 5px 0 5px;
+  color: red;
+  grid-area: a;
+}
+
+.registerVoter-button {
+  grid-area: c;
 }

@@ -42,10 +42,10 @@ function VoterRegistration() {
 
   return (
     <div className="voterRegistration-main">
-      <h3 htmlFor="adminSentence">
+      <span className="admin-instruction">
         Admin please proceed with voter address registration before moving to
         next phase
-      </h3>
+      </span>
       {voterAddressList.map((currentVoter, index) => (
         <div key={index} className="voterRegistration-operation">
           <div className="voterRegistration-add">
@@ -55,18 +55,20 @@ function VoterRegistration() {
                 name="voterAddress"
                 type="text"
                 id="voterAddress"
+                placeholder="Enter address"
                 value={currentVoter.voterAddress}
                 onChange={(e) => handleAddressChange(e, index)}
               ></input>
-
               {currentVoter.valid === 0 &&
                 currentVoter.voterAddress.length > 0 && (
-                  <p className="voterRegistration-alert">!</p>
+                  <div className="voterRegistration-alert">
+                    <p>!</p>
+                  </div>
                 )}
               {currentVoter.voterAddress.length == 42 && (
                 <button
                   type="button"
-                  className="registerVoter-btn"
+                  className="registerVoter-button"
                   onClick={() => handleRegisterVoters(index)}
                 >
                   <span>Register</span>
@@ -77,7 +79,7 @@ function VoterRegistration() {
               voterAddressList.length < 100 && (
                 <button
                   type="button"
-                  className="addVoter-btn"
+                  className="addVoter-button"
                   onClick={handleAddVoter}
                 >
                   <span>Add voter</span>

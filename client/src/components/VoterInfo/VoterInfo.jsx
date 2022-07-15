@@ -66,7 +66,8 @@ function VoterInfo() {
       <button disabled={!addressValid} onClick={checkVoterInfo}>
         Get voter result
       </button>
-      <p>{answer}</p>
+      <span className="instruction">{answer}</span>
+      <hr />
     </div>
   );
 }

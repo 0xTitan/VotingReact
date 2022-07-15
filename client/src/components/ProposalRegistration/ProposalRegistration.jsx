@@ -47,10 +47,9 @@ function ProposalRegistration() {
 
   return (
     <div className="proposalRegistration-main">
-      <h3 htmlFor="adminSentence">
-        Admin please proceed with proposal address registration before moving to
-        next phase
-      </h3>
+      <span className="admin-instruction">
+        Please proceed with proposal registration
+      </span>
       {proposalList.map((currentProposal, index) => (
         <div key={index} className="proposalRegistration-operation">
           <div className="proposalRegistration-add">
@@ -60,19 +59,15 @@ function ProposalRegistration() {
                 name="proposal"
                 type="text"
                 id="proposal"
+                placeholder="Enter proposal"
                 disabled={currentProposal.registered}
                 value={currentProposal.proposal}
                 onChange={(e) => handleChange(e, index)}
               ></input>
-
-              {currentProposal.valid === 0 &&
-                currentProposal.proposal.length > 0 && (
-                  <p className="proposalRegistration-alert">!</p>
-                )}
               {currentProposal.proposal.length > 0 && (
                 <button
                   type="button"
-                  className="registerProposal-btn"
+                  className="registerProposal-button"
                   disabled={currentProposal.registered}
                   onClick={() => handleRegisterProposals(index)}
                 >
@@ -83,7 +78,7 @@ function ProposalRegistration() {
             {proposalList.length - 1 === index && proposalList.length < 100 && (
               <button
                 type="button"
-                className="addProposal-btn"
+                className="addProposal-button"
                 onClick={handleAddProposal}
               >
                 <span>Add proposal</span>

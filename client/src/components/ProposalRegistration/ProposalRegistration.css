@@ -1,40 +1,39 @@
 .proposalRegistration-main {
   display: flex;
   flex-direction: column;
-  margin: auto;
+  min-height: 300px;
+  align-items: center;
 }
 
 .proposalRegistration-operation {
   display: flex;
   flex-direction: row;
-  margin: auto;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .proposalRegistration-add {
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
+  justify-content: center;
+  align-items: center;
 }
 
 .proposalRegistration-input {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 5px;
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas: "a b c d";
   align-items: center;
-  flex-wrap: nowrap;
-  min-width: 550;
-  justify-content: space-evenly;
-}
-
-.proposalRegistration-alert {
-  flex-shrink: 0;
+  justify-items: center;
+  margin: 10px 0 10px 0;
 }
 
 .proposalRegistration-inputTxt {
-  flex-shrink: 0;
-  min-width: 250px;
+  grid-area: b;
 }
 
-.removeproposal-btn {
-  flex-shrink: 0;
+.registerProposal-button {
+  grid-area: c;
 }

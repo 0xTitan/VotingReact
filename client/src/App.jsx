@@ -57,11 +57,11 @@ function App() {
           {isOwner && (
             <Worflow handleWorkflowStatusCheck={handleWorkflowStatusCheck} />
           )}
-          <hr />
+
           {isOwner && currentWorflow == 0 && <VoterRegistration />}
-          <hr />
+
           {isRegister && currentWorflow == 1 && <ProposalRegistration />}
-          <hr />
+
           {isRegister && currentWorflow == 3 && (
             <ProposalList
               hasVoted={hasVoted}
@@ -69,10 +69,14 @@ function App() {
               proposalIdVotedFor={proposalIdVotedFor}
             />
           )}
-          <hr />
           {currentWorflow == 5 && <VoteResult />}
-          <hr />
           {currentWorflow == 5 && isRegister && <VoterInfo />}
+          {currentWorflow == 0 && !isOwner && (
+            <span className="instruction">
+              {" "}
+              Addresses are currently registered. Please come back later !
+            </span>
+          )}
         </div>
       </div>
     </EthProvider>

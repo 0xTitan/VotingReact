@@ -1,10 +1,15 @@
 .class-accountInfo {
   display: flex;
-  justify-content: flex-end
+  justify-content: flex-end;
 }
 
 .class-itemAccountInfo {
-  background: crimson;
+  color: white;
   margin: 5px;
-  padding: 5px;
+  padding: 2px;
+  font-family: roboto, sans-serif;
+  text-transform: uppercase;
+  border: 2px double #00000091;
+  border-radius: 10px 10px 10px 10px;
+  border-color: #00000075;
 }
