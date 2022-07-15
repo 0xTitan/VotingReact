@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import useEth from "../../contexts/EthContext/useEth";
 import "./Workflow.css";
 
-function Worflow({ handleWorkflowStatusCheck }) {
+function Worflow({ handleWorkflowStatusCheck, showEvent }) {
   const {
     state: { contract, accounts },
   } = useEth();
@@ -37,6 +37,10 @@ function Worflow({ handleWorkflowStatusCheck }) {
     setWorkflowStatus(value);
     handleWorkflowStatusCheck(value);
     //get event from transaction.0
+    showEvent(
+      "Workflow updated to  :" +
+      transact.events.WorkflowStatusChange.returnValues.newStatus
+    );
     console.log(
       "Previous status  :" +
         transact.events.WorkflowStatusChange.returnValues.previousStatus
@@ -57,6 +61,10 @@ function Worflow({ handleWorkflowStatusCheck }) {
     setWorkflowStatus(value);
     handleWorkflowStatusCheck(value);
     //get event from transaction.0
+    showEvent(
+      "Workflow updated to  :" +
+      transact.events.WorkflowStatusChange.returnValues.newStatus
+    );
     console.log(
       "Previous status  :" +
         transact.events.WorkflowStatusChange.returnValues.previousStatus
@@ -77,6 +85,10 @@ function Worflow({ handleWorkflowStatusCheck }) {
     setWorkflowStatus(value);
     handleWorkflowStatusCheck(value);
     //get event from transaction.0
+    showEvent(
+      "Workflow updated to  :" +
+      transact.events.WorkflowStatusChange.returnValues.newStatus
+    );
     console.log(
       "Previous status  :" +
         transact.events.WorkflowStatusChange.returnValues.previousStatus
@@ -97,6 +109,10 @@ function Worflow({ handleWorkflowStatusCheck }) {
     setWorkflowStatus(value);
     handleWorkflowStatusCheck(value);
     //get event from transaction.0
+    showEvent(
+      "Workflow updated to  :" +
+      transact.events.WorkflowStatusChange.returnValues.newStatus
+    );
     console.log(
       "Previous status  :" +
         transact.events.WorkflowStatusChange.returnValues.previousStatus
@@ -116,7 +132,11 @@ function Worflow({ handleWorkflowStatusCheck }) {
       .call({ from: accounts[0] });
     setWorkflowStatus(value);
     handleWorkflowStatusCheck(value);
-    //get event from transaction.0
+
+    showEvent(
+      "Workflow updated to  :" +
+      transact.events.WorkflowStatusChange.returnValues.newStatus
+    );
     console.log(
       "Previous status  :" +
         transact.events.WorkflowStatusChange.returnValues.previousStatus

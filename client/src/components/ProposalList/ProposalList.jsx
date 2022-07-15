@@ -3,7 +3,12 @@ import useEth from "../../contexts/EthContext/useEth";
 import ProposalItem from "../ProposalItem/ProposalItem";
 import "./ProposalList.css";
 
-function ProposalList({ hasVoted, handleHasVotedCheck, proposalIdVotedFor }) {
+function ProposalList({
+  hasVoted,
+  handleHasVotedCheck,
+  proposalIdVotedFor,
+  showEvent,
+}) {
   const {
     state: { contract, accounts },
   } = useEth();
@@ -45,9 +50,7 @@ function ProposalList({ hasVoted, handleHasVotedCheck, proposalIdVotedFor }) {
 
   return (
     <div>
-      <span className="instruction">
-        Please vote for the proposal you want
-      </span>
+      <span className="instruction">Please vote for the proposal you want</span>
 
       <div className="proposalList-container">
         {pastEvents.map((event) => (
@@ -57,6 +60,7 @@ function ProposalList({ hasVoted, handleHasVotedCheck, proposalIdVotedFor }) {
               hasVoted={hasVoted}
               handleHasVotedCheck={handleHasVotedCheck}
               proposalIdVotedFor={proposalIdVotedFor}
+              showEvent={showEvent}
             ></ProposalItem>
           </div>
         ))}

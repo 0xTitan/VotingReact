@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import useEth from "../../contexts/EthContext/useEth";
 import "./ProposalRegistration.css";
 
-function ProposalRegistration() {
+function ProposalRegistration({ showEvent }) {
   const {
     state: { contract, accounts },
   } = useEth();
@@ -40,6 +40,10 @@ function ProposalRegistration() {
     const transact = await contract.methods
       .addProposal(prop)
       .send({ from: accounts[0] });
+    showEvent(
+      "Proposal added  : " +
+        transact.events.ProposalRegistered.returnValues.proposalId
+    );
     console.log(
       "Proposal added  : " +
         transact.events.ProposalRegistered.returnValues.proposalId

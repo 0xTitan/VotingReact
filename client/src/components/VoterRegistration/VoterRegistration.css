@@ -3,6 +3,7 @@
   flex-direction: column;
   min-height: 300px;
   align-items: center;
+  margin: 15px;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -24,23 +25,27 @@
 .voterRegistration-input {
   display: grid;
   grid-auto-rows: 1fr;
-  grid-template-columns: 20px 1fr 1fr;
-  grid-template-areas: "a b c";
+  grid-template-columns: 1fr 20px 1fr 1fr 1fr;
+  grid-template-areas: "a b c d e";
   align-items: center;
   justify-items: center;
   margin: 10px 0 10px 0;
 }
 
 .voterRegistration-inputTxt {
-  grid-area: b;
+  grid-area: c;
 }
 
 .voterRegistration-alert {
   margin: 0 5px 0 5px;
   color: red;
-  grid-area: a;
+  grid-area: b;
 }
 
 .registerVoter-button {
-  grid-area: c;
+  grid-area: d;
+}
+
+.addVoter-button {
+  grid-area: e;
 }

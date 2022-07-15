@@ -121,7 +121,7 @@ function AccountInfo({
       isOwner();
       getCurrentWorkflowAndVoterRegistered();
     }
-  }, [web3, accounts, address]);
+  }, [web3, accounts, address, handleWorkflowStatusCheck]);
 
   return (
     <div className="class-accountInfo">

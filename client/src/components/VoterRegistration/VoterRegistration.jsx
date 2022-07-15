@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import useEth from "../../contexts/EthContext/useEth";
 import "./VoterRegistration.css";
 
-function VoterRegistration() {
+function VoterRegistration({ showEvent }) {
   const {
     state: { contract, accounts },
   } = useEth();
@@ -33,11 +33,14 @@ function VoterRegistration() {
     const transact = await contract.methods
       .addVoter(voterAddressList[index].voterAddress)
       .send({ from: accounts[0] });
-    console.log(transact);
-    console.log(
+    showEvent(
       "Voter added  :" +
         transact.events.VoterRegistered.returnValues.voterAddress
     );
+  };
+
+  const checkAddressLength = (addressLength) => {
+    return addressLength == 42;
   };
 
   return (
@@ -65,26 +68,26 @@ function VoterRegistration() {
                     <p>!</p>
                   </div>
                 )}
-              {currentVoter.voterAddress.length == 42 && (
-                <button
-                  type="button"
-                  className="registerVoter-button"
-                  onClick={() => handleRegisterVoters(index)}
-                >
-                  <span>Register address to contract</span>
-                </button>
-              )}
+              <button
+                type="button"
+                className="registerVoter-button"
+                onClick={() => handleRegisterVoters(index)}
+                disabled={!checkAddressLength(currentVoter.voterAddress.length)}
+              >
+                <span>Register address to contract</span>
+              </button>
+
+              {voterAddressList.length - 1 === index &&
+                voterAddressList.length < 100 && (
+                  <button
+                    type="button"
+                    className="addVoter-button"
+                    onClick={handleAddVoter}
+                  >
+                    <span>Add a new voter address</span>
+                  </button>
+                )}
             </div>
-            {voterAddressList.length - 1 === index &&
-              voterAddressList.length < 100 && (
-                <button
-                  type="button"
-                  className="addVoter-button"
-                  onClick={handleAddVoter}
-                >
-                  <span>Add a new voter address</span>
-                </button>
-              )}
           </div>
         </div>
       ))}

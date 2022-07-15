@@ -10,6 +10,7 @@ import ProposalRegistration from "./components/ProposalRegistration/ProposalRegi
 import ProposalList from "./components/ProposalList/ProposalList";
 import VoteResult from "./components/VoteResult/VoteResult";
 import VoterInfo from "./components/VoterInfo/VoterInfo";
+import EventDisplayer from "./components/EventDisplayer/EventDisplayer";
 import "./App.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
   const [hasVoted, setHasVoted] = useState(false);
   const [proposalIdVotedFor, setProposalIfVotedFor] = useState(-1);
   const [currentWorflow, setCurrentWorflow] = useState(0);
+  const [raisedEvent, SetRaisedEvent] = useState("");
 
   function handleOwnerCheck(owner) {
     setOwner(owner);
@@ -42,6 +44,11 @@ function App() {
     setCurrentWorflow(status);
   }
 
+  const showEvent = (raisedEvent) => {
+    console.log(raisedEvent);
+    SetRaisedEvent(raisedEvent);
+  };
+
   return (
     <EthProvider>
       <div id="App">
@@ -55,18 +62,26 @@ function App() {
           />
           <hr />
           {isOwner && (
-            <Worflow handleWorkflowStatusCheck={handleWorkflowStatusCheck} />
+            <Worflow
+              handleWorkflowStatusCheck={handleWorkflowStatusCheck}
+              showEvent={showEvent}
+            />
           )}
 
-          {isOwner && currentWorflow == 0 && <VoterRegistration />}
+          {isOwner && currentWorflow == 0 && (
+            <VoterRegistration showEvent={showEvent} />
+          )}
 
-          {isRegister && currentWorflow == 1 && <ProposalRegistration />}
+          {isRegister && currentWorflow == 1 && (
+            <ProposalRegistration showEvent={showEvent} />
+          )}
 
           {isRegister && currentWorflow == 3 && (
             <ProposalList
               hasVoted={hasVoted}
               handleHasVotedCheck={handleHasVotedCheck}
               proposalIdVotedFor={proposalIdVotedFor}
+              showEvent={showEvent}
             />
           )}
           {currentWorflow == 5 && <VoteResult />}
@@ -77,6 +92,7 @@ function App() {
               Addresses are currently registered. Please come back later !
             </span>
           )}
+          <EventDisplayer raisedEvent={raisedEvent} showEvent={showEvent}></EventDisplayer>
         </div>
       </div>
     </EthProvider>

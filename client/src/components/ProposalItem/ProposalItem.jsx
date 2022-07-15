@@ -7,6 +7,7 @@ function ProposalItem({
   hasVoted,
   handleHasVotedCheck,
   proposalIdVotedFor,
+  showEvent,
 }) {
   const {
     state: { accounts, contract },
@@ -48,6 +49,12 @@ function ProposalItem({
       .send({ from: accounts[0] });
     handleHasVotedCheck(true);
     setVoteId(id);
+    showEvent(
+      "Vote register  : " +
+        transac.events.Voted.returnValues.voter +
+        " for prop id " +
+        transac.events.Voted.returnValues.proposalId
+    );
     console.log(
       "Vote register  : " +
         transac.events.Voted.returnValues.voter +
