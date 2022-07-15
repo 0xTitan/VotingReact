@@ -4,24 +4,23 @@ import ProposalItem from "../ProposalItem/ProposalItem";
 
 function ProposalList({ hasVoted, handleHasVotedCheck, proposalIdVotedFor }) {
   const {
-    state: { contract },
+    state: { contract, accounts },
   } = useEth();
 
   const [pastEvents, setPastEvents] = useState([]);
   let loading = false;
 
   useEffect(() => {
-    console.log("render PropsList");
-    console.log(loading);
-
+    console.log("render PropList");
     const fetchData = async () => {
       await getProposalList();
+      loading = false;
     };
 
     if (contract && !loading) {
       fetchData();
     }
-  }, [contract]);
+  }, [contract, accounts, proposalIdVotedFor]);
 
   const getProposalList = async () => {
     loading = true;
@@ -39,9 +38,6 @@ function ProposalList({ hasVoted, handleHasVotedCheck, proposalIdVotedFor }) {
       (error, events) => {
         console.log(events);
         setPastEvents(events);
-        // events.map(
-        //   async (event) => await retrievePropName(event.returnValues.proposalId)
-        // );
       }
     );
   };
@@ -49,7 +45,7 @@ function ProposalList({ hasVoted, handleHasVotedCheck, proposalIdVotedFor }) {
   return (
     <div>
       {pastEvents.map((event) => (
-        <div>
+        <div key={event.returnValues.proposalId}>
           <ProposalItem
             id={event.returnValues.proposalId}
             hasVoted={hasVoted}

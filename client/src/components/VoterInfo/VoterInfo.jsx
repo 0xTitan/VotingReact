@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useEth from "../../contexts/EthContext/useEth";
 
 function VoterInfo() {
@@ -12,8 +12,13 @@ function VoterInfo() {
   const [proposal, setProposal] = useState(false);
   const [answer, SetAnswer] = useState("");
 
+  useEffect(() => {
+    setAddress("");
+    SetAnswer("");
+  }, [accounts]);
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { value } = e.target;
     if (value.length === 42) {
       setAddressValid(true);
       setAddress(value);
@@ -55,6 +60,7 @@ function VoterInfo() {
         name="voterAddress"
         type="text"
         id="voterAddress"
+        value={address}
         onChange={(e) => handleChange(e)}
       ></input>
       <button disabled={!addressValid} onClick={checkVoterInfo}>

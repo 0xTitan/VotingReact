@@ -12,13 +12,15 @@ function ProposalItem({
   } = useEth();
 
   const [data, setData] = useState();
+  const [voteId, setVoteId] = useState(proposalIdVotedFor);
 
   useEffect(() => {
-    console.log("proposalIdVotedFor : " + proposalIdVotedFor);
+    console.log("proposalIdVotedFor from PropItem : " + proposalIdVotedFor);
     if (contract) retrievePropName(id);
-  }, [contract]);
+  }, [contract, accounts, proposalIdVotedFor, voteId]);
 
   const retrievePropName = async (idProp) => {
+    setVoteId(proposalIdVotedFor);
     const proposal = await contract.methods
       .getOneProposal(idProp)
       .call({ from: accounts[0] });
@@ -42,6 +44,8 @@ function ProposalItem({
       .setVote(id)
       .send({ from: accounts[0] });
     handleHasVotedCheck(true);
+    setVoteId(id);
+    retrievePropName(id);
     console.log(
       "Vote register  : " +
         transac.events.Voted.returnValues.voter +
@@ -49,8 +53,9 @@ function ProposalItem({
         transac.events.Voted.returnValues.proposalId
     );
   };
-
-  if (proposalIdVotedFor == id) {
+  console.log("voteId :" + voteId);
+  console.log("id :" + id);
+  if (voteId == id) {
     return (
       <div key={id}>
         <h2>{data && data.description}</h2>

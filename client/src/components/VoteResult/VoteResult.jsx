@@ -16,23 +16,18 @@ function VoteResult() {
 
   const getWinner = async () => {
     const winningProposalId = await contract.methods
-      .winningProposalID()
+      .winningProposalId()
       .call({ from: accounts[0] });
-    const proposal = await contract.methods
-      .getOneProposal(winningProposalId)
-      .call({ from: accounts[0] });
+    // const proposal = await contract.methods
+    //   .getOneProposal(winningProposalId)
+    //   .call({ from: accounts[0] });
 
-    setWinningProposal(proposal);
+    setWinningProposal(winningProposalId);
   };
 
   return (
     <div>
-      {winingProposal && (
-        <h1>
-          Winner is {winingProposal.description} with {winingProposal.voteCount}{" "}
-          votes
-        </h1>
-      )}
+      {winingProposal && <h1>Winner is proposal with id : {winingProposal}</h1>}
     </div>
   );
 }
