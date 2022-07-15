@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useEth from "../../contexts/EthContext/useEth";
 import ProposalItem from "../ProposalItem/ProposalItem";
+import "./ProposalList.css";
 
 function ProposalList({ hasVoted, handleHasVotedCheck, proposalIdVotedFor }) {
   const {
@@ -44,16 +45,22 @@ function ProposalList({ hasVoted, handleHasVotedCheck, proposalIdVotedFor }) {
 
   return (
     <div>
-      {pastEvents.map((event) => (
-        <div key={event.returnValues.proposalId}>
-          <ProposalItem
-            id={event.returnValues.proposalId}
-            hasVoted={hasVoted}
-            handleHasVotedCheck={handleHasVotedCheck}
-            proposalIdVotedFor={proposalIdVotedFor}
-          ></ProposalItem>
-        </div>
-      ))}
+      <span className="instruction">
+        Please vote for the proposal you want :
+      </span>
+
+      <div className="proposalList-container">
+        {pastEvents.map((event) => (
+          <div key={event.returnValues.proposalId}>
+            <ProposalItem
+              id={event.returnValues.proposalId}
+              hasVoted={hasVoted}
+              handleHasVotedCheck={handleHasVotedCheck}
+              proposalIdVotedFor={proposalIdVotedFor}
+            ></ProposalItem>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

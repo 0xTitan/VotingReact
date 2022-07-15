@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useEth from "../../contexts/EthContext/useEth";
 import "./ProposalRegistration.css";
 
@@ -6,6 +6,7 @@ function ProposalRegistration() {
   const {
     state: { contract, accounts },
   } = useEth();
+
   const [proposalList, setProposalList] = useState([
     { proposal: "", registered: 0 },
   ]);
@@ -13,6 +14,10 @@ function ProposalRegistration() {
   const handleAddProposal = () => {
     setProposalList([...proposalList, { proposal: "", registered: 0 }]);
   };
+
+  useEffect(() => {
+    setProposalList([{ proposal: "", registered: 0 }]);
+  }, [accounts]);
 
   //   const handleRemoveProposal = (index) => {
   //     console.log("RemoveProposal");
@@ -71,7 +76,7 @@ function ProposalRegistration() {
                   disabled={currentProposal.registered}
                   onClick={() => handleRegisterProposals(index)}
                 >
-                  <span>Register proposal</span>
+                  <span>Register proposal to smart contract</span>
                 </button>
               )}
             </div>
@@ -81,7 +86,7 @@ function ProposalRegistration() {
                 className="addProposal-button"
                 onClick={handleAddProposal}
               >
-                <span>Add proposal</span>
+                <span>Create a new proposal</span>
               </button>
             )}
           </div>

@@ -71,7 +71,7 @@ function VoterRegistration() {
                   className="registerVoter-button"
                   onClick={() => handleRegisterVoters(index)}
                 >
-                  <span>Register</span>
+                  <span>Register address to contract</span>
                 </button>
               )}
             </div>
@@ -82,7 +82,7 @@ function VoterRegistration() {
                   className="addVoter-button"
                   onClick={handleAddVoter}
                 >
-                  <span>Add voter</span>
+                  <span>Add a new voter address</span>
                 </button>
               )}
           </div>

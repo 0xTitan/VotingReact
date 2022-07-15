@@ -35,7 +35,7 @@ button[class*="button"] {
   border-radius: 15px;
   border: none;
   font-size: 12px;
-  min-width: 160px;
+  min-width: 100px;
   max-width: 200px;
 
   text-align: center;

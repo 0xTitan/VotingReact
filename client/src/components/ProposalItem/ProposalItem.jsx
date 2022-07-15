@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import useEth from "../../contexts/EthContext/useEth";
+import "./ProposalItem.css";
 
 function ProposalItem({
   id,
@@ -16,11 +17,13 @@ function ProposalItem({
 
   useEffect(() => {
     console.log("proposalIdVotedFor from PropItem : " + proposalIdVotedFor);
-    if (contract) retrievePropName(id);
-  }, [contract, accounts, proposalIdVotedFor, voteId]);
+    if (contract) {
+      retrievePropName(id);
+      setVoteId(proposalIdVotedFor);
+    }
+  }, [contract, accounts, proposalIdVotedFor]);
 
   const retrievePropName = async (idProp) => {
-    setVoteId(proposalIdVotedFor);
     const proposal = await contract.methods
       .getOneProposal(idProp)
       .call({ from: accounts[0] });
@@ -45,7 +48,6 @@ function ProposalItem({
       .send({ from: accounts[0] });
     handleHasVotedCheck(true);
     setVoteId(id);
-    retrievePropName(id);
     console.log(
       "Vote register  : " +
         transac.events.Voted.returnValues.voter +
@@ -53,26 +55,24 @@ function ProposalItem({
         transac.events.Voted.returnValues.proposalId
     );
   };
-  console.log("voteId :" + voteId);
-  console.log("id :" + id);
-  if (voteId == id) {
-    return (
-      <div key={id}>
-        <h2>{data && data.description}</h2>
-        <p>{data && data.voteCount}</p>
-        <p> You voted for this prop</p>
-      </div>
-    );
-  } else {
-    return (
-      <div key={id}>
-        <h2>{data && data.description}</h2>
-        <p>{data && data.voteCount}</p>
-        <button disabled={hasVoted} onClick={handleVote}>
+  console.log("voteId :" + voteId + " | id :" + id);
+
+  return (
+    <div key={id} className="proposalItem-container">
+      <h2>{data && data.description}</h2>
+      <p>{data && data.voteCount}</p>
+      {voteId == id && <p> You voted for this prop</p>}
+      {voteId != id && (
+        <button
+          className="proposalItem-button"
+          disabled={hasVoted}
+          onClick={handleVote}
+        >
           Vote
         </button>
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
 }
+
 export default ProposalItem;
