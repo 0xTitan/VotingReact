@@ -2,13 +2,13 @@ import { useState } from "react";
 import { EthProvider } from "./contexts/EthContext";
 import Account from "./components/Account/AccoutInfo";
 import Worflow from "./components/Worflow/Workflow";
-
 import EventDisplayer from "./components/EventDisplayer/EventDisplayer";
-import "./App.css";
 import Navbar from "./components/NavBar/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Events from "./components/Events/Events";
+import TransferOnwerShip from "./components/TransferOwnerShip/TransferOnwerShip";
+import "./App.css";
 
 function App() {
   const [isOwner, setOwner] = useState(false);
@@ -120,6 +120,10 @@ function App() {
               <Route
                 path="/event/vote"
                 element={isOwner && <Events key="Vote" type="Vote"></Events>}
+              ></Route>
+              <Route
+                path="/transferOwner"
+                element={isOwner && <TransferOnwerShip  handleOwnerCheck={handleOwnerCheck}></TransferOnwerShip>}
               ></Route>
             </Routes>
           </BrowserRouter>

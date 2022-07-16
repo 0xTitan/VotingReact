@@ -42,12 +42,27 @@ function EthProvider({ children }) {
   }, [init]);
 
   useEffect(() => {
-    const events = ["chainChanged", "accountsChanged"];
-    const handleChange = () => {
-      init(state.artifact);
+    const events = ["chainChanged", "accountsChanged", "connect", "disconnect"];
+    const handleChange = (e) => {
+      console.log(e);
+      console.log(state);
+      if (e == "disconnect") {
+        state.artifact = null;
+        init(state.artifact);
+      }
+      {
+        if (!state.artifact) {
+          const artifact = require("../../contracts/Voting.json");
+          init(artifact);
+        } else {
+          init(state.artifact);
+        }
+      }
     };
 
-    events.forEach((e) => window.ethereum.on(e, handleChange));
+    events.forEach((e) => {
+      window.ethereum.on(e, () => handleChange(e));
+    });
     return () => {
       events.forEach((e) => window.ethereum.removeListener(e, handleChange));
     };

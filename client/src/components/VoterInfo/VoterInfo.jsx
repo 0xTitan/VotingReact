@@ -11,11 +11,11 @@ function VoterInfo() {
   const [address, setAddress] = useState("");
   const [addressValid, setAddressValid] = useState(false);
   const [proposal, setProposal] = useState(false);
-  const [answer, SetAnswer] = useState("");
+  const [answer, setAnswer] = useState("");
 
   useEffect(() => {
     setAddress("");
-    SetAnswer("");
+    setAnswer("");
   }, [accounts]);
 
   const handleChange = (e) => {
@@ -39,18 +39,18 @@ function VoterInfo() {
             .getOneProposal(voterInfo.votedProposalId)
             .call({ from: accounts[0] });
           setProposal(proposal);
-          SetAnswer(
+          setAnswer(
             "Voter with address " +
               address +
               "has voted for " +
               proposal.description
           );
         } else {
-          SetAnswer("Voter with address " + address + " didn't vote");
+          setAnswer("Voter with address " + address + " didn't vote");
         }
       }
     } catch (err) {
-      SetAnswer("No data for address " + address);
+      setAnswer("No data for address " + address);
     }
   };
 

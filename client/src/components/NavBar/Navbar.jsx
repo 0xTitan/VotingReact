@@ -20,6 +20,13 @@ function Navbar() {
           <Link to="/" className="menu-bar" onMouseEnter={hideSubNav}>
             Home
           </Link>
+          <Link
+            to="/transferOwner"
+            className="menu-bar"
+            onMouseEnter={hideSubNav}
+          >
+            Transfer Owner
+          </Link>
           <Link to="/workflow" className="menu-bar" onMouseEnter={hideSubNav}>
             Workflow
           </Link>

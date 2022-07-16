@@ -124,10 +124,19 @@ function AccountInfo({
   }, [web3, accounts, address, handleWorkflowStatusCheck]);
 
   return (
-    <div className="class-accountInfo">
-      <p className="class-itemAccountInfo">{address}</p>
-      <p className="class-itemAccountInfo">{balance}</p>
-      <p className="class-itemAccountInfo">{network}</p>
+    <div>
+      {address && (
+        <div className="class-accountInfo">
+          <p className="class-itemAccountInfo">{address}</p>
+          <p className="class-itemAccountInfo">{balance}</p>
+          <p className="class-itemAccountInfo">{network}</p>
+        </div>
+      )}
+       {!address && (
+        <div className="class-accountInfo">
+          <p className="class-itemAccountInfo">Not connected</p>
+        </div>
+      )}
     </div>
   );
 }
