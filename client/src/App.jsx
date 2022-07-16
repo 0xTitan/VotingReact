@@ -23,7 +23,6 @@ function App() {
   }
 
   function handleVoterRegisteredCheck(registered) {
-    console.log("registered : " + registered);
     setRegistered(registered);
   }
 
@@ -32,17 +31,14 @@ function App() {
   }
 
   function handleProposalIfVotedFor(propIdVotedFor) {
-    console.log("proposalIdVotedFor : " + propIdVotedFor);
     setProposalIfVotedFor(propIdVotedFor);
   }
 
   function handleWorkflowStatusCheck(status) {
-    console.log("setCurrentWorflow to : " + status);
     setCurrentWorflow(status);
   }
 
   const showEvent = (raisedEvent) => {
-    console.log(raisedEvent);
     SetRaisedEvent(raisedEvent);
   };
 

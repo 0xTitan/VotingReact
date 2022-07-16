@@ -56,12 +56,15 @@ function Events({ type }) {
       optionsPast,
       (error, oldEvents) => {
         if (oldEvents.length > 0) {
-          const data = oldEvents.map((e) => e.returnValues.proposalId);
-          setProposalEvents([...proposalEvents, data]);
+          let listId = [...proposalEvents];
+          oldEvents.map(
+            (e) => (listId = [, e.returnValues.proposalId, ...listId])
+          );
+          setProposalEvents(listId);
         }
       }
     );
-
+    console.log("proposalEvents : " + proposalEvents);
     contract.events.ProposalRegistered(optionsNew).on("data", (newEvent) => {
       setProposalEvents([newEvent.returnValues.proposalId, ...proposalEvents]);
     });
@@ -73,8 +76,11 @@ function Events({ type }) {
       optionsPast,
       (error, oldEvents) => {
         if (oldEvents.length > 0) {
-          const data = oldEvents.map((e) => e.returnValues.newStatus);
-          setWorkflowEvents([...workflowEvents, data]);
+          let listId = [...workflowEvents];
+          oldEvents.map(
+            (e) => (listId = [e.returnValues.newStatus, ...listId])
+          );
+          setWorkflowEvents(listId);
         }
       }
     );
@@ -90,8 +96,11 @@ function Events({ type }) {
       optionsPast,
       (error, oldEvents) => {
         if (oldEvents.length > 0) {
-          const data = oldEvents.map((e) => e.returnValues.voterAddress);
-          setVoterEvents([...voterEvents, data]);
+          let listAddress = [...voterEvents];
+          oldEvents.map(
+            (e) => (listAddress = [e.returnValues.voterAddress, ...voterEvents])
+          );
+          setVoterEvents(listAddress);
         }
       }
     );
@@ -104,11 +113,18 @@ function Events({ type }) {
   const listenVote = async () => {
     await contract.getPastEvents("Voted", optionsPast, (error, oldEvents) => {
       if (oldEvents.length > 0) {
-        const data = oldEvents.map((e) => ({
-          voter: e.returnValues.voter,
-          voteId: e.returnValues.proposalId,
-        }));
-        setVoteEvents([...voteEvents, data]);
+        let listVote = [...voteEvents];
+        const data = oldEvents.map(
+          (e) =>
+            (listVote = [
+              ...voteEvents,
+              {
+                voter: e.returnValues.voter,
+                voteId: e.returnValues.proposalId,
+              },
+            ])
+        );
+        setVoteEvents(listVote);
       }
     });
 
@@ -124,11 +140,11 @@ function Events({ type }) {
   switch (type) {
     case "ProposalRegistered":
       return (
-        <div className="proposalRegisteredEvents-container">
+        <div className="registeredEvents-container">
           {proposalEvents.length > 0 &&
             proposalEvents.map((currentEvent) => (
-              <span className="instruction">
-                Proposal registered with id :{currentEvent}
+              <span key={currentEvent} className="instruction">
+                Proposal registered with id : {currentEvent}
               </span>
             ))}
           {proposalEvents.length == 0 && (
@@ -138,10 +154,10 @@ function Events({ type }) {
       );
     case "WorkflowStatusChange":
       return (
-        <div className="proposalRegisteredEvents-container">
+        <div className="registeredEvents-container">
           {workflowEvents.length > 0 &&
             workflowEvents.map((currentEvent) => (
-              <span className="instruction">
+              <span key={currentEvent} className="instruction">
                 Workflow updated to : {currentEvent}
               </span>
             ))}
@@ -152,10 +168,10 @@ function Events({ type }) {
       );
     case "VoterRegistered":
       return (
-        <div className="proposalRegisteredEvents-container">
+        <div className="registeredEvents-container">
           {voterEvents.length > 0 &&
             voterEvents.map((currentEvent) => (
-              <span className="instruction">
+              <span key={currentEvent} className="instruction">
                 Voter registered with address : {currentEvent}
               </span>
             ))}
@@ -166,10 +182,10 @@ function Events({ type }) {
       );
     case "Vote":
       return (
-        <div className="proposalRegisteredEvents-container">
+        <div className="registeredEvents-container">
           {voteEvents.length > 0 &&
             voteEvents.map((currentEvent) => (
-              <span className="instruction">
+              <span key={currentEvent.voter} className="instruction">
                 Vote registered for address : {currentEvent.voter} and proposal
                 : {currentEvent.voteId}
               </span>

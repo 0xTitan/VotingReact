@@ -1,6 +1,6 @@
 {
-  "short_name": "Truffle Box",
-  "name": "React Truffle Box",
+  "short_name": "Voting",
+  "name": "Voting smart contract",
   "icons": [
     {
       "src": "favicon.ico",
