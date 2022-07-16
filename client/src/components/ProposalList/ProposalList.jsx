@@ -17,7 +17,6 @@ function ProposalList({
   let loading = false;
 
   useEffect(() => {
-    console.log("render PropList");
     const fetchData = async () => {
       await getProposalList();
       loading = false;

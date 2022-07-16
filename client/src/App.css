@@ -24,6 +24,12 @@
   height: 100%;
 }
 
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
 button[class*="button"] {
   padding: 10px 12px;
   border-radius: 15px;
@@ -158,5 +164,5 @@ p span.code {
 } */
 
 hr {
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
