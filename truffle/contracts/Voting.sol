@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.8.0 <0.9.0;
+pragma solidity 0.8.14;
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 /// @author Owner : Alyra / Revision : 0xTitan.
 /// @notice contract updated to fix DoS when checking voting result
-/// @notice : ipfs link to devdoc : https://ipfs.io/ipfs/QmZh9j6Ee3ya4pk6HbfcnVKJXkkGB1t1nHJvgys1n6vhek
+/// @notice : ipfs link to devdoc : https://ipfs.io/ipfs/QmTzzdeVcFZ51Sh8rnwAbSWM2rhet68JTvyVHQgTVRs8RT
 /// @title Voting contract
 contract Voting is Ownable {
     struct Voter {
