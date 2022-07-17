@@ -1,7 +1,7 @@
 import React from "react";
 import VoterRegistration from "../VoterRegistration/VoterRegistration";
 import ProposalRegistration from "../ProposalRegistration/ProposalRegistration";
-import ProposalList from "../ProposalList/ProposalList"
+import ProposalList from "../ProposalList/ProposalList";
 import VoteResult from "../VoteResult/VoteResult";
 import VoterInfo from "../VoterInfo/VoterInfo";
 
@@ -34,6 +34,12 @@ function Home({
       )}
       {currentWorflow == 5 && <VoteResult />}
       {currentWorflow == 5 && isRegister && <VoterInfo />}
+      {currentWorflow == 4 && !isOwner && !isRegister && (
+        <span className="instruction">
+          {" "}
+          Vote results are checked. Please come back later !
+        </span>
+      )}
       {currentWorflow == 0 && !isOwner && (
         <span className="instruction">
           {" "}
