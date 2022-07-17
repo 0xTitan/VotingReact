@@ -132,7 +132,7 @@ function AccountInfo({
           <p className="class-itemAccountInfo">{network}</p>
         </div>
       )}
-       {!address && (
+      {!address && (
         <div className="class-accountInfo">
           <p className="class-itemAccountInfo">Not connected</p>
         </div>

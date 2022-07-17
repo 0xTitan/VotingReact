@@ -17874,6 +17874,12 @@
     "version": "0.8.14+commit.80d49f37.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {},
+      "links": {},
+      "address": "0xee198A4EaA6ddd244B6e70f0f43EF1b087A870EA",
+      "transactionHash": "0x48384cd5588f8b1e8e1b60055a6ff4cfcf1050aa3271e7d6e3fef96d5c105b42"
+    },
     "1657319223283": {
       "events": {},
       "links": {},
@@ -17978,7 +17984,7 @@
     }
   },
   "schemaVersion": "3.4.8",
-  "updatedAt": "2022-07-16T05:42:00.645Z",
+  "updatedAt": "2022-07-17T06:47:40.251Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Owner : Alyra / Revision : 0xTitan.",

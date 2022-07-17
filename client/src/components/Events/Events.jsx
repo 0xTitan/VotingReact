@@ -97,8 +97,9 @@ function Events({ type }) {
       (error, oldEvents) => {
         if (oldEvents.length > 0) {
           let listAddress = [...voterEvents];
+          console.log(oldEvents);
           oldEvents.map(
-            (e) => (listAddress = [e.returnValues.voterAddress, ...voterEvents])
+            (e) => (listAddress = [e.returnValues.voterAddress, ...listAddress])
           );
           setVoterEvents(listAddress);
         }
@@ -114,14 +115,14 @@ function Events({ type }) {
     await contract.getPastEvents("Voted", optionsPast, (error, oldEvents) => {
       if (oldEvents.length > 0) {
         let listVote = [...voteEvents];
-        const data = oldEvents.map(
+        oldEvents.map(
           (e) =>
             (listVote = [
-              ...voteEvents,
               {
                 voter: e.returnValues.voter,
                 voteId: e.returnValues.proposalId,
               },
+              ...listVote,
             ])
         );
         setVoteEvents(listVote);

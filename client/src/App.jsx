@@ -4,7 +4,7 @@ import Account from "./components/Account/AccoutInfo";
 import Worflow from "./components/Worflow/Workflow";
 import EventDisplayer from "./components/EventDisplayer/EventDisplayer";
 import Navbar from "./components/NavBar/Navbar";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Events from "./components/Events/Events";
 import TransferOnwerShip from "./components/TransferOwnerShip/TransferOnwerShip";
@@ -43,10 +43,10 @@ function App() {
   };
 
   return (
-    <EthProvider>
-      <div id="App">
-        <div className="container">
-          <BrowserRouter>
+    <BrowserRouter>
+      <EthProvider>
+        <div id="App">
+          <div className="container">
             <div className="header">
               {isOwner && <Navbar></Navbar>}
               <Account
@@ -60,7 +60,7 @@ function App() {
             <hr />
             <Routes>
               <Route
-                path="/workflow"
+                path="/VotingReact/workflow"
                 element={
                   isOwner && (
                     <Worflow
@@ -71,7 +71,7 @@ function App() {
                 }
               ></Route>
               <Route
-                path="/"
+                path="/VotingReact"
                 element={
                   <Home
                     isOwner={isOwner}
@@ -85,7 +85,7 @@ function App() {
                 }
               />
               <Route
-                path="/event/proposal"
+                path="/VotingReact/event/proposal"
                 element={
                   isOwner && (
                     <Events
@@ -96,7 +96,7 @@ function App() {
                 }
               ></Route>
               <Route
-                path="/event/workflow"
+                path="/VotingReact/event/workflow"
                 element={
                   isOwner && (
                     <Events
@@ -107,7 +107,7 @@ function App() {
                 }
               ></Route>
               <Route
-                path="/event/voter"
+                path="/VotingReact/event/voter"
                 element={
                   isOwner && (
                     <Events
@@ -118,23 +118,32 @@ function App() {
                 }
               ></Route>
               <Route
-                path="/event/vote"
+                path="/VotingReact/event/vote"
                 element={isOwner && <Events key="Vote" type="Vote"></Events>}
               ></Route>
               <Route
-                path="/transferOwner"
-                element={isOwner && <TransferOnwerShip  handleOwnerCheck={handleOwnerCheck}></TransferOnwerShip>}
+                path="/VotingReact/transferOwner"
+                element={
+                  isOwner && (
+                    <TransferOnwerShip
+                      handleOwnerCheck={handleOwnerCheck}
+                    ></TransferOnwerShip>
+                  )
+                }
+              ></Route>
+              <Route
+                path="*"
+                element={<Navigate to="/VotingReact" replace />}
               ></Route>
             </Routes>
-          </BrowserRouter>
-
-          <EventDisplayer
-            raisedEvent={raisedEvent}
-            showEvent={showEvent}
-          ></EventDisplayer>
+            <EventDisplayer
+              raisedEvent={raisedEvent}
+              showEvent={showEvent}
+            ></EventDisplayer>
+          </div>
         </div>
-      </div>
-    </EthProvider>
+      </EthProvider>
+    </BrowserRouter>
   );
 }
 
