@@ -11,11 +11,11 @@ Please visit : https://0xtitan.github.io/VotingReact/
 
 # Smart contract address (Ropsten)
 
-
+0x2cF00AADBA6028573E26329454Bc1B7e13EC77C9
 
 # Loom link
 
-# Solc
+# Generated SOLC documentation 
 
 ```json
 {
