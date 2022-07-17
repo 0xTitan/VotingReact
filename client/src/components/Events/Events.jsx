@@ -66,7 +66,9 @@ function Events({ type }) {
     );
     console.log("proposalEvents : " + proposalEvents);
     contract.events.ProposalRegistered(optionsNew).on("data", (newEvent) => {
-      setProposalEvents([newEvent.returnValues.proposalId, ...proposalEvents]);
+      let listId = [...proposalEvents];
+      listId = [newEvent.returnValues.proposalId, ...listId];
+      setProposalEvents(listId);
     });
   };
 
@@ -86,7 +88,9 @@ function Events({ type }) {
     );
 
     contract.events.WorkflowStatusChange(optionsNew).on("data", (newEvent) => {
-      setWorkflowEvents([newEvent.returnValues.newStatus, ...workflowEvents]);
+      let listId = [...workflowEvents];
+      listId = [newEvent.returnValues.newStatus, ...listId];
+      setWorkflowEvents(listId);
     });
   };
 
@@ -107,7 +111,9 @@ function Events({ type }) {
     );
 
     contract.events.VoterRegistered(optionsNew).on("data", (newEvent) => {
-      setVoterEvents([newEvent.returnValues.voterAddress, ...voterEvents]);
+      let listAddress = [...voterEvents];
+      listAddress = [newEvent.returnValues.voterAddress, ...listAddress];
+      setVoterEvents(listAddress);
     });
   };
 
@@ -130,11 +136,13 @@ function Events({ type }) {
     });
 
     contract.events.Voted(optionsNew).on("data", (newEvent) => {
+      let listVote = [...voteEvents];
       const data = {
         voter: newEvent.returnValues.voter,
         voteId: newEvent.returnValues.proposalId,
       };
-      setVoteEvents([data, ...voteEvents]);
+      listVote = [data, ...listVote];
+      setVoteEvents(listVote);
     });
   };
 
