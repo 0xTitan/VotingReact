@@ -22,8 +22,10 @@ function VoterInfo() {
     const { value } = e.target;
     if (value.length === 42) {
       setAddressValid(true);
-      setAddress(value);
+    } else {
+      setAddressValid(false);
     }
+    setAddress(value);
   };
 
   const checkVoterInfo = async () => {

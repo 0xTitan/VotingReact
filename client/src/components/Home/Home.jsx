@@ -34,7 +34,7 @@ function Home({
       )}
       {currentWorflow == 5 && <VoteResult />}
       {currentWorflow == 5 && isRegister && <VoterInfo />}
-      {currentWorflow == 4 && !isOwner && !isRegister && (
+      {currentWorflow == 4 && isRegister && (
         <span className="instruction">
           {" "}
           Vote results are checked. Please come back later !
