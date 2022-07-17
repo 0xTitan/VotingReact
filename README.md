@@ -20,6 +20,7 @@ Please visit : https://0xtitan.github.io/VotingReact/
 - Video 1 : https://www.loom.com/share/14b5a99be28b48adb2110dca34a59885
 - Video 2 : https://www.loom.com/share/1a374d0475d44a7b8460ede9be528fa2
 - Video 3 : https://www.loom.com/share/1d20988b7ed549d78cec533294cf48b4
+- Video 4 (points techniques et améliorations) : https://www.loom.com/share/550fe76a3a114bb2b1029501a18e49ec
 
 # Generated SOLC documentation
 
