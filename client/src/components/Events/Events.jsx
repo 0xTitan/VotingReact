@@ -11,6 +11,7 @@ function Events({ type }) {
   const [proposalEvents, setProposalEvents] = useState([]);
   const [voterEvents, setVoterEvents] = useState([]);
   const [voteEvents, setVoteEvents] = useState([]);
+  let loaded = false;
 
   let optionsPast = {
     filter: {
@@ -28,27 +29,25 @@ function Events({ type }) {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      await watchEvents();
-    };
-
-    if (contract) {
-      console.log("Refresh event");
-      fetchData();
+    if (contract && !loaded) {
+      watchEvents();
+      loaded = true;
     }
-  }, [contract]);
+  }, []);
 
   const watchEvents = () => {
     switch (type) {
       case "ProposalRegistered":
-        listenProposal();
-      case "WorkflowStatusChange":
+        return listenProposal();
+      case "WorkflowStatusChange": {
         listenWorkflowStatus();
         listenNewWorkflowStatus();
+        return;
+      }
       case "VoterRegistered":
-        listenVoter();
+        return listenVoter();
       case "Vote":
-        listenVote();
+        return listenVote();
     }
   };
 
@@ -59,7 +58,10 @@ function Events({ type }) {
       (error, oldEvents) => {
         if (oldEvents.length > 0) {
           oldEvents.map((e) =>
-            setProposalEvents((current) => [e.returnValues.proposalId, current])
+            setProposalEvents((current) => [
+              e.returnValues.proposalId,
+              ...current,
+            ])
           );
         }
       }
@@ -67,7 +69,7 @@ function Events({ type }) {
     contract.events.ProposalRegistered(optionsNew).on("data", (newEvent) => {
       setProposalEvents((current) => [
         newEvent.returnValues.proposalId,
-        current,
+        ...current,
       ]);
     });
   };
@@ -78,13 +80,13 @@ function Events({ type }) {
       optionsPast,
       (error, oldEvents) => {
         if (oldEvents.length > 0) {
-          let listId = [...workflowEvents];
-          oldEvents.map((e) =>
+          oldEvents.map((e) => {
+            console.log("Add past event");
             setWorkflowEvents((current) => [
               e.returnValues.newStatus,
               ...current,
-            ])
-          );
+            ]);
+          });
         }
       }
     );
@@ -92,6 +94,7 @@ function Events({ type }) {
 
   const listenNewWorkflowStatus = () => {
     contract.events.WorkflowStatusChange(optionsNew).on("data", (newEvent) => {
+      console.log("Add new event");
       setWorkflowEvents((current) => [
         newEvent.returnValues.newStatus,
         ...current,
@@ -105,6 +108,7 @@ function Events({ type }) {
       optionsPast,
       (error, oldEvents) => {
         if (oldEvents.length > 0) {
+          console.log("past voter");
           oldEvents.map((e) =>
             setVoterEvents((current) => [
               e.returnValues.voterAddress,
@@ -116,6 +120,7 @@ function Events({ type }) {
     );
 
     contract.events.VoterRegistered(optionsNew).on("data", (newEvent) => {
+      console.log("New voter");
       setVoterEvents((current) => [
         newEvent.returnValues.voterAddress,
         ...current,
@@ -126,7 +131,6 @@ function Events({ type }) {
   const listenVote = async () => {
     await contract.getPastEvents("Voted", optionsPast, (error, oldEvents) => {
       if (oldEvents.length > 0) {
-        let listVote = [...voteEvents];
         oldEvents.map((e) =>
           setVoteEvents((current) => [
             {

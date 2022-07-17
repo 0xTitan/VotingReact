@@ -44,10 +44,6 @@ function ProposalRegistration({ showEvent }) {
       "Proposal added  : " +
         transact.events.ProposalRegistered.returnValues.proposalId
     );
-    console.log(
-      "Proposal added  : " +
-        transact.events.ProposalRegistered.returnValues.proposalId
-    );
 
     const listProposal = [...proposalList];
     listProposal[index]["registered"] = 1;
