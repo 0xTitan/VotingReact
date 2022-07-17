@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/VotingReact/static/css/main.e8af020a.chunk.css",
-    "main.js": "/VotingReact/static/js/main.211a0226.chunk.js",
-    "main.js.map": "/VotingReact/static/js/main.211a0226.chunk.js.map",
+    "main.js": "/VotingReact/static/js/main.eab59563.chunk.js",
+    "main.js.map": "/VotingReact/static/js/main.eab59563.chunk.js.map",
     "runtime-main.js": "/VotingReact/static/js/runtime-main.9e7e0be3.js",
     "runtime-main.js.map": "/VotingReact/static/js/runtime-main.9e7e0be3.js.map",
-    "static/js/2.e5447629.chunk.js": "/VotingReact/static/js/2.e5447629.chunk.js",
-    "static/js/2.e5447629.chunk.js.map": "/VotingReact/static/js/2.e5447629.chunk.js.map",
+    "static/js/2.9df80677.chunk.js": "/VotingReact/static/js/2.9df80677.chunk.js",
+    "static/js/2.9df80677.chunk.js.map": "/VotingReact/static/js/2.9df80677.chunk.js.map",
     "index.html": "/VotingReact/index.html",
     "static/css/main.e8af020a.chunk.css.map": "/VotingReact/static/css/main.e8af020a.chunk.css.map",
-    "static/js/2.e5447629.chunk.js.LICENSE.txt": "/VotingReact/static/js/2.e5447629.chunk.js.LICENSE.txt"
+    "static/js/2.9df80677.chunk.js.LICENSE.txt": "/VotingReact/static/js/2.9df80677.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.9e7e0be3.js",
-    "static/js/2.e5447629.chunk.js",
+    "static/js/2.9df80677.chunk.js",
     "static/css/main.e8af020a.chunk.css",
-    "static/js/main.211a0226.chunk.js"
+    "static/js/main.eab59563.chunk.js"
   ]
 }
