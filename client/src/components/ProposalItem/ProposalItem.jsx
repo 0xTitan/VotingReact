@@ -37,7 +37,7 @@ function ProposalItem({
       //   const list = [...proposalList, { id: data.id }];
       //   console.log(list.length);
       //   setProposalList(list);
-    } 
+    }
   };
 
   const handleVote = async () => {
@@ -53,7 +53,6 @@ function ProposalItem({
         transac.events.Voted.returnValues.proposalId
     );
   };
-
 
   return (
     <div key={id} className="proposalItem-container">

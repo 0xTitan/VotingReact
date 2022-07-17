@@ -44,7 +44,7 @@ function VoterInfo() {
           setAnswer(
             "Voter with address " +
               address +
-              "has voted for " +
+              " has voted for " +
               proposal.description
           );
         } else {
