@@ -81,7 +81,6 @@ function Events({ type }) {
       (error, oldEvents) => {
         if (oldEvents.length > 0) {
           oldEvents.map((e) => {
-            console.log("Add past event");
             setWorkflowEvents((current) => [
               e.returnValues.newStatus,
               ...current,
@@ -94,7 +93,6 @@ function Events({ type }) {
 
   const listenNewWorkflowStatus = () => {
     contract.events.WorkflowStatusChange(optionsNew).on("data", (newEvent) => {
-      console.log("Add new event");
       setWorkflowEvents((current) => [
         newEvent.returnValues.newStatus,
         ...current,
@@ -108,7 +106,6 @@ function Events({ type }) {
       optionsPast,
       (error, oldEvents) => {
         if (oldEvents.length > 0) {
-          console.log("past voter");
           oldEvents.map((e) =>
             setVoterEvents((current) => [
               e.returnValues.voterAddress,
@@ -120,7 +117,6 @@ function Events({ type }) {
     );
 
     contract.events.VoterRegistered(optionsNew).on("data", (newEvent) => {
-      console.log("New voter");
       setVoterEvents((current) => [
         newEvent.returnValues.voterAddress,
         ...current,
