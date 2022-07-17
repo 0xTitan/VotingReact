@@ -11,8 +11,10 @@ Please visit : https://0xtitan.github.io/VotingReact/
 
 # Smart contract address (Ropsten)
 
-0xee198A4EaA6ddd244B6e70f0f43EF1b087A870EA
+0x0B8D57712aABfe42039f98c03bf23e20eCa0d079
 
 # Loom link
 
 # Solc
+
+# IPFS smart contract documentation

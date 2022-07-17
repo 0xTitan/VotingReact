@@ -18,10 +18,8 @@ function VoterRegistration({ showEvent }) {
     const { name, value } = e.target;
     const listVoter = [...voterAddressList];
     listVoter[index][name] = value;
-    console.log("adress length" + value.length);
     if (value.length === 42) {
       listVoter[index]["valid"] = 1;
-      console.log("address valid");
     } else {
       listVoter[index]["valid"] = 0;
     }
@@ -29,7 +27,6 @@ function VoterRegistration({ showEvent }) {
   };
 
   const handleRegisterVoters = async (index) => {
-    console.log(voterAddressList[index].voterAddress);
     const transact = await contract.methods
       .addVoter(voterAddressList[index].voterAddress)
       .send({ from: accounts[0] });

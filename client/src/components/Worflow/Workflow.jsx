@@ -9,7 +9,6 @@ function Worflow({ handleWorkflowStatusCheck, showEvent }) {
   const [workflowStatus, setWorkflowStatus] = useState(0);
 
   useEffect(() => {
-    console.log("render workflow");
     if (accounts) {
       read();
     }
@@ -41,14 +40,6 @@ function Worflow({ handleWorkflowStatusCheck, showEvent }) {
       "Workflow updated to  :" +
       transact.events.WorkflowStatusChange.returnValues.newStatus
     );
-    console.log(
-      "Previous status  :" +
-        transact.events.WorkflowStatusChange.returnValues.previousStatus
-    );
-    console.log(
-      "Current status  :" +
-        transact.events.WorkflowStatusChange.returnValues.newStatus
-    );
   };
 
   const endProposalsRegistering = async (e) => {
@@ -64,14 +55,6 @@ function Worflow({ handleWorkflowStatusCheck, showEvent }) {
     showEvent(
       "Workflow updated to  :" +
       transact.events.WorkflowStatusChange.returnValues.newStatus
-    );
-    console.log(
-      "Previous status  :" +
-        transact.events.WorkflowStatusChange.returnValues.previousStatus
-    );
-    console.log(
-      "Current status  :" +
-        transact.events.WorkflowStatusChange.returnValues.newStatus
     );
   };
 
@@ -89,14 +72,6 @@ function Worflow({ handleWorkflowStatusCheck, showEvent }) {
       "Workflow updated to  :" +
       transact.events.WorkflowStatusChange.returnValues.newStatus
     );
-    console.log(
-      "Previous status  :" +
-        transact.events.WorkflowStatusChange.returnValues.previousStatus
-    );
-    console.log(
-      "Current status  :" +
-        transact.events.WorkflowStatusChange.returnValues.newStatus
-    );
   };
 
   const endVotingSession = async (e) => {
@@ -113,14 +88,6 @@ function Worflow({ handleWorkflowStatusCheck, showEvent }) {
       "Workflow updated to  :" +
       transact.events.WorkflowStatusChange.returnValues.newStatus
     );
-    console.log(
-      "Previous status  :" +
-        transact.events.WorkflowStatusChange.returnValues.previousStatus
-    );
-    console.log(
-      "Current status  :" +
-        transact.events.WorkflowStatusChange.returnValues.newStatus
-    );
   };
 
   const tallyVotes = async (e) => {
@@ -136,14 +103,6 @@ function Worflow({ handleWorkflowStatusCheck, showEvent }) {
     showEvent(
       "Workflow updated to  :" +
       transact.events.WorkflowStatusChange.returnValues.newStatus
-    );
-    console.log(
-      "Previous status  :" +
-        transact.events.WorkflowStatusChange.returnValues.previousStatus
-    );
-    console.log(
-      "Current status  :" +
-        transact.events.WorkflowStatusChange.returnValues.newStatus
     );
   };
 

@@ -41,7 +41,6 @@ function ProposalList({
       "ProposalRegistered",
       optionsPast,
       (error, events) => {
-        console.log(events);
         setPastEvents(events);
       }
     );

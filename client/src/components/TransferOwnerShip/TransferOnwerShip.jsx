@@ -19,7 +19,6 @@ function TransferOnwerShip({ handleOwnerCheck }) {
 
   const handleOwnerChange = (e) => {
     const { name, value } = e.target;
-    console.log("adress length" + value.length);
     if (value.length === 42) {
       setValid(1);
     } else {

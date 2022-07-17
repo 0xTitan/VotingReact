@@ -44,8 +44,6 @@ function EthProvider({ children }) {
   useEffect(() => {
     const events = ["chainChanged", "accountsChanged", "connect", "disconnect"];
     const handleChange = (e) => {
-      console.log(e);
-      console.log(state);
       if (e == "disconnect") {
         state.artifact = null;
         init(state.artifact);

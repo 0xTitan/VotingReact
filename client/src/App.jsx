@@ -135,6 +135,11 @@ function App() {
                 path="*"
                 element={<Navigate to="/VotingReact" replace />}
               ></Route>
+
+              <Route
+                path="/VotingReact/event/*"
+                element={!isOwner && <Navigate to="/VotingReact" replace />}
+              ></Route>
             </Routes>
             <EventDisplayer
               raisedEvent={raisedEvent}

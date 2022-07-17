@@ -40,7 +40,6 @@ function AccountInfo({
   };
 
   const getNetwork = async () => {
-    console.log(networkID);
     switch (networkID) {
       case 1:
         setNetwork("Ethereum");
@@ -74,7 +73,6 @@ function AccountInfo({
     const value = await contract.methods
       .workflowStatus()
       .call({ from: accounts[0] });
-    console.log("status : " + value);
     setWorkflowStatus(value);
     handleWorkflowStatusCheck(value);
     if (value > 0) {
@@ -89,7 +87,6 @@ function AccountInfo({
             .getVoter(accounts[0])
             .call({ from: accounts[0] })
         : null;
-      console.log(value);
       if (value.isRegistered) {
         handleVoterRegisteredCheck(true);
       } else {
@@ -106,7 +103,6 @@ function AccountInfo({
         handleProposalIfVotedFor(-1);
       }
     } catch (err) {
-      console.log(err);
       handleVoterRegisteredCheck(false);
       handleHasVotedCheck(false);
       handleProposalIfVotedFor(-1);

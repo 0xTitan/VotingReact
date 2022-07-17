@@ -17,7 +17,6 @@ function ProposalItem({
   const [voteId, setVoteId] = useState(proposalIdVotedFor);
 
   useEffect(() => {
-    console.log("proposalIdVotedFor from PropItem : " + proposalIdVotedFor);
     if (contract) {
       retrievePropName(id);
       setVoteId(proposalIdVotedFor);
@@ -38,9 +37,7 @@ function ProposalItem({
       //   const list = [...proposalList, { id: data.id }];
       //   console.log(list.length);
       //   setProposalList(list);
-    } else {
-      console.log("no proposal retrieve");
-    }
+    } 
   };
 
   const handleVote = async () => {
@@ -55,14 +52,8 @@ function ProposalItem({
         " for prop id " +
         transac.events.Voted.returnValues.proposalId
     );
-    console.log(
-      "Vote register  : " +
-        transac.events.Voted.returnValues.voter +
-        " for prop id " +
-        transac.events.Voted.returnValues.proposalId
-    );
   };
-  console.log("voteId :" + voteId + " | id :" + id);
+
 
   return (
     <div key={id} className="proposalItem-container">
