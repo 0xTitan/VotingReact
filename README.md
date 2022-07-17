@@ -3,7 +3,9 @@
 This dapp allow the smart owner to start a voting session.
 He needs to manage the worflow by first registering voter address then advanced to next status until tally vote.
 Registered voter(address) can submit proposal then vote for one.
-When voting phase is over, the winner is determined
+When voting phase is over, the winner is determined.
+
+Voting contract has been updated to avoid DoS attack. The proposal limit is set to 100.
 
 # DAPP link
 
